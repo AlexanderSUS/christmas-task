@@ -1,0 +1,30 @@
+@use '../../../style/vars.scss';
+
+.navbar {
+  display: flex;
+}
+
+.navbar__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__list-item {
+  text-decoration: none;
+  list-style: none;
+  padding-right: 2vw;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: $main-font-color;
+}
+
+.navbar__img {
+  height: calc($header-height * 0.8);
+}

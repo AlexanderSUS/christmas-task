@@ -1,0 +1,10 @@
+@use './vars.scss';
+
+.root {
+  height: 100%;
+
+  font-family: $main-font-family;
+  color: $main-font-color;
+
+  background-color: $dark-color;
+}
