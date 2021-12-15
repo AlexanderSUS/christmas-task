@@ -6,12 +6,15 @@ const footer = document.createElement('footer');
 footer.classList.add('footer');
 
 const copyRigth = document.createElement('span');
+copyRigth.classList.add('footer__text');
 copyRigth.innerHTML= '&copy;';
 
 const year = document.createElement('span');
+year.classList.add('footer__text');
 year.textContent = '2021';
 
 const author = document.createElement('span');
+author.classList.add('footer__text');
 author.textContent = 'Alexander Suslov';
 
 const gitHubLink = document.createElement('a');
@@ -35,7 +38,13 @@ const rssLogo = document.createElement('img');
 rssLogo.src = RSSLogo;
 rssLogo.classList.add('footer__img');
 
+const rssLink = document.createElement('a');
+rssLink.setAttribute('href', 'https://rs.school/');
+rssLink.classList.add('footer__link');
+rssLink.appendChild(rssLogo);
+
+
 footer.appendChild(infoContainer);
-footer.appendChild(rssLogo);
+footer.appendChild(rssLink);
 
 export default footer;

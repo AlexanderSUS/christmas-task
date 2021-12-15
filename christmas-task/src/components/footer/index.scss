@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 50px;
 }
@@ -15,4 +15,13 @@
 
 .footer__img {
   height: 40px;
+  opacity: 0.8;
+}
+
+.footer__img:hover {
+  opacity: 1;
+}
+
+.footer__text {
+  padding-right: 1vw;
 }
