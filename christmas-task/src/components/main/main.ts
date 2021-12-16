@@ -1,8 +1,8 @@
 import './index.scss';
-import valueFilter from './value_filter/valueFilter';
+import filter from './filters/filters';
 
 const main = document.createElement('main');
 main.classList.add('main');
-main.appendChild(valueFilter);
+main.appendChild(filter);
 
 export default main;

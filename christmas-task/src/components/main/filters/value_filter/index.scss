@@ -2,12 +2,12 @@
   border-radius: 10px;
   background-color: rgba(31, 112, 127, .3);
   padding: 1rem;
+  backdrop-filter: blur(2px);
 }
 
 .value-filter__container {
   display: flex;
   flex-direction: row;
-  // justify-content: space-between;
   align-items: center;
 }
 
