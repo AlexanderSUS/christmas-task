@@ -1,4 +1,15 @@
-export const data = [
+type Toy = {
+  num: string;
+  name: string;
+  count: string;
+  year: string,
+  shape: string,
+  color: string,
+  size: string,
+  favorite: boolean;
+}
+
+export const data: Toy[] = [
   {
     num: '1',
     name: 'Большой шар с рисунком',
