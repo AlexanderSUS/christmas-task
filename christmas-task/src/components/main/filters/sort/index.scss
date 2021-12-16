@@ -1,0 +1,42 @@
+.sort-filter {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem;
+
+  border-radius: 10px;
+  background-color: rgba(31, 112, 127, .3);
+  backdrop-filter: blur(2px);
+}
+
+.sort-filter__title {
+  margin: 0.5rem;
+}
+
+.sort-filter__reset {
+  margin-top: auto;
+
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.8rem;
+
+  padding: 0.5em 1em;
+
+  background-color: transparent;
+  border-radius: 20px;
+  border: 1px solid #278d9f;
+  backdrop-filter: blur(2px);
+}
+
+.sort-filter__select {
+  outline: none;
+
+  color: #ffffff;
+
+  background-color: #121c1e;
+  border: 1px solid #278d9f;
+  border-radius: 20px;
+  margin: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

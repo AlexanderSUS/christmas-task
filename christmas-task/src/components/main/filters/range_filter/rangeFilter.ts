@@ -1,12 +1,12 @@
 import 'nouislider/dist/nouislider.css';
 import './index.scss';
 import { Slider } from './slider/slider';
-import data from '../../../appData/data';
+import data from '../../../../appData/data';
 
 const rangeFilter = document.createElement('section');
 rangeFilter.classList.add('range-filter');
 
-rangeFilter.innerHTML = `<h3 class="range-filter__title">ФИЛЬТРЫ ПО ДИАПАЗОНУ</h3>
+rangeFilter.innerHTML = `<h3 class="range-filter__title">Фильтры по диапазону</h3>
                         <h6 class="range-filter__subtitle">Количество экземпляров:</h6>
                         <div class="range-filter__slider-container">
                           <span class="min-range count"></span>
