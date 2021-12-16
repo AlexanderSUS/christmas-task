@@ -1,0 +1,38 @@
+.value-filter {
+  border-radius: 10px;
+  background-color: rgba(31, 112, 127, .3);
+  padding: 1rem;
+}
+
+.value-filter__container {
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+  align-items: center;
+}
+
+.value-filter__title {
+  display: block;
+}
+
+.value-filter__title, .value-filter__subtitle {
+  margin: 0.5rem;
+}
+
+.filter-button {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+}
+
+.filter-button__image {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.size .filter-button__image:first-of-type {
+  width: 1.5rem;
+  height: 1.5rem;
+}
