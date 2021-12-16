@@ -1,4 +1,4 @@
-type Toy = {
+export type Toy = {
   num: string;
   name: string;
   count: string;
