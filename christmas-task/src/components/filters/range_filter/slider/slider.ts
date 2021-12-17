@@ -1,5 +1,5 @@
 import noUiSlider from 'nouislider';
-import { Toy } from '../../../../../appData/data';
+import { Toy } from '../../../../appData/data';
 
 type MinMaxRange = {
   minRange: number;
