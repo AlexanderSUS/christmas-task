@@ -24,7 +24,7 @@ export class ToyCard {
     Object.values(this.toyProps).forEach((value, index) => {
       this.card.querySelectorAll('.property-title')[index].textContent += ` ${value}`
     })
-      this.card.style.backgroundImage = `url(./assets/${this.toyProps.num}.png)`;
+      this.card.style.backgroundImage = `url(../../assets/toys/${this.toyProps.num}.png)`;
 
     return this.card;
   }

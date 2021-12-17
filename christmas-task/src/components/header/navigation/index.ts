@@ -1,4 +1,4 @@
-import TreeLogo from './assets/tree.svg';
+import TreeLogo from '../../../assets/svg/tree.svg';
 import './index.scss';
 
 type Name = string;

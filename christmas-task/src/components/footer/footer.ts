@@ -1,6 +1,6 @@
 import './index.scss';
-import RSSLogo from './assets/rss.svg';
-import GitHubLogo from './assets/github.svg';
+import RSSLogo from '../../assets/svg/rss.svg';
+import GitHubLogo from '../../assets/svg/github.svg';
 
 const footer = document.createElement('footer');
 footer.classList.add('footer');

@@ -1,46 +1,75 @@
 import './index.scss';
-import valueFilterData from './valueFIlterData';
+import { ValueFilterTypes } from '../../../appData/valueFIlterTypes';
 
-const valueFilter = document.createElement('section');
-valueFilter.classList.add('value-filter');
+export interface ValueFIlterInt {
 
-valueFilter.innerHTML = `<h3 class="value-filter__title">Фильтры по значению</h3>
-                        <div class="value-filter__container shape">
-                          <h6 class="value-filter__subtitle">Форма:</h6>
-                        </div>
-                        <div class="value-filter__container color">
-                          <h6 class="value-filter__subtitle">Цвет:</h6>
-                        </div>
-                        <div class="value-filter__container size">
-                          <h6 class="value-filter__subtitle">Размер:</h6>
-                        </div>
-                        <div class="value-filter__container">
-                          <h6 class="value-filter__subtitle favourite">Только любиыме:</h6>
-                          <input class="value-filter__input" type="checkbox">
-                        </div>`;
+  filterTypes: ValueFilterTypes;
+  settings: boolean[];
+  filter: HTMLElement;
 
-Object.keys(valueFilterData).forEach((key) => {
-  const propertyLis =  valueFilterData[key as keyof typeof valueFilterData];
-  const filter = valueFilter.querySelector(`.${key}`);
+  fillValues(): void;
+  render(): HTMLElement;
+}
 
-  propertyLis.forEach((element) => {
+export class ValueFilter implements ValueFIlterInt{
 
-    const button = document.createElement('button');
-    button.classList.add('filter-button');
+  filterTypes: ValueFilterTypes;
+  settings: boolean[];
+  filter: HTMLElement;
 
-    if (element.value[0] !== '#') {
-      const buttonImage = document.createElement('img');
-      buttonImage.classList.add('filter-button__image');
-      buttonImage.src = element.value;
-      button.appendChild(buttonImage);
-    } else {
-     button.classList.add('filter-button_color'); 
-     button.style.backgroundColor = element.value;
-    }      
 
-    filter?.appendChild(button);
-  });
-});
+  constructor(valueFilterTypes: ValueFilterTypes , settings: boolean[] = [false, false, false, false, false, false]) {
+    this.filterTypes = valueFilterTypes;
+    this.settings = settings;
+    this.filter = document.createElement('section');
+    this.filter.classList.add('value-filter');
+    this.filter.innerHTML = `<h3 class="value-filter__title">ФИЛЬТРЫ ПО ЗНАЧЕНИЮ</h3>
+                            <div class="value-filter__container shapes">
+                              <h6 class="value-filter__subtitle">форма:</h6>
+                            </div>
+                            <div class="value-filter__container colors">
+                              <h6 class="value-filter__subtitle">цвет:</h6>
+                            </div>
+                            <div class="value-filter__container sizes">
+                              <h6 class="value-filter__subtitle">размер:</h6>
+                            </div>
+                            <div class="value-filter__container">
+                              <h6 class="value-filter__subtitle favourite">только любиыме:</h6>
+                              <input class="value-filter__input" type="checkbox">
+                            </div>`;
+  }
 
-export default valueFilter;
+  fillValues(): void {
+    Object.keys(this.filterTypes).forEach((key, index) => {
+      const propertyLis =  this.filterTypes[key as keyof typeof this.filterTypes];
+      const filter = this.filter.querySelector(`.${key}`);
 
+      propertyLis.forEach((element) => {
+
+        const button = document.createElement('button');
+        button.classList.add('filter-button');
+
+        if (this.settings[index] === true) {
+          button.classList.add('active');
+        }
+
+        if (element.value[0] !== '#') {
+          const buttonImage = document.createElement('img');
+          buttonImage.classList.add('filter-button__image');
+          buttonImage.src = element.value;
+          button.appendChild(buttonImage);
+        } else {
+        button.classList.add('filter-button_color'); 
+        button.style.backgroundColor = element.value;
+        }      
+
+        filter?.appendChild(button);
+      });
+    });
+  }
+
+  render() {
+    this.fillValues();
+    return this.filter;
+  }
+}
