@@ -11,6 +11,7 @@ import footer from './components/footer/footer';
 import toysContainer from './components/toysContainer/toysContainer';
 import { PageInt } from './utils/pageDrawer';
 import { Page } from './utils/pageDrawer';
+import { Settings } from './utils/settingsLoader';
 
 class App {
   page: PageInt;
@@ -22,6 +23,7 @@ class App {
   }
 }
 
-const app = new App(new Page(header, main, footer, new FilterContainer(new ValueFilter(valueFilterTypes), new RangeFilter(data), new SortFilter()), toysContainer))
+const app = new App(new Page(header, main, footer, new FilterContainer(
+  new ValueFilter(valueFilterTypes, new Settings(data) ), new RangeFilter(data), new SortFilter()), toysContainer));
 
 app.init();

@@ -1,4 +1,5 @@
 import { FilterContainer } from "../components/filters/filters";
+import { Settings } from "./settingsLoader";
 
 export interface PageInt {
   page: HTMLElement | null

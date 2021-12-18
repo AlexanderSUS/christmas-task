@@ -27,6 +27,21 @@
   border: none;
 }
 
+.filter-button.active img {
+  filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
+}
+
+.filter-button_color.active::after {
+  position: relative;
+  top: -3px;
+  left: -4px;
+  content: "\2713";
+  font-size: 1.2rem;
+  // width: 10px;
+  // height: 10px;
+  color: #121c1e;
+}
+
 .filter-button__image {
   width: 1.2rem;
   height: 1.2rem;

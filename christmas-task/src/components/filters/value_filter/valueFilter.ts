@@ -1,10 +1,12 @@
 import './index.scss';
 import { ValueFilterTypes } from '../../../appData/valueFIlterTypes';
+import { Values } from '../../../utils/settingsLoader';
+import { SettingsTypeClassInt } from '../../../utils/settingsLoader';
 
 export interface ValueFIlterInt {
 
   filterTypes: ValueFilterTypes;
-  settings: boolean[];
+  activeBtns: Values
   filter: HTMLElement;
 
   fillValues(): void;
@@ -14,13 +16,13 @@ export interface ValueFIlterInt {
 export class ValueFilter implements ValueFIlterInt{
 
   filterTypes: ValueFilterTypes;
-  settings: boolean[];
+  activeBtns: Values;
   filter: HTMLElement;
 
 
-  constructor(valueFilterTypes: ValueFilterTypes , settings: boolean[] = [false, false, false, false, false, false]) {
+  constructor(valueFilterTypes: ValueFilterTypes , activeBtns: SettingsTypeClassInt) {
     this.filterTypes = valueFilterTypes;
-    this.settings = settings;
+    this.activeBtns = activeBtns.settings.values;
     this.filter = document.createElement('section');
     this.filter.classList.add('value-filter');
     this.filter.innerHTML = `<h3 class="value-filter__title">ФИЛЬТРЫ ПО ЗНАЧЕНИЮ</h3>
@@ -40,16 +42,21 @@ export class ValueFilter implements ValueFIlterInt{
   }
 
   fillValues(): void {
-    Object.keys(this.filterTypes).forEach((key, index) => {
+    Object.keys(this.filterTypes).forEach((key) => {
       const propertyLis =  this.filterTypes[key as keyof typeof this.filterTypes];
       const filter = this.filter.querySelector(`.${key}`);
 
-      propertyLis.forEach((element) => {
+      propertyLis.forEach((element, index) => {
 
         const button = document.createElement('button');
         button.classList.add('filter-button');
+        button.addEventListener('click', () => {
+          button.classList.toggle('active');
+          this.activeBtns[key as keyof typeof this.activeBtns][index] =
+          this.activeBtns[key as keyof typeof this.activeBtns][index] ? false : true;
+        })
 
-        if (this.settings[index] === true) {
+        if (this.activeBtns[key as keyof typeof this.activeBtns][index]) {
           button.classList.add('active');
         }
 
