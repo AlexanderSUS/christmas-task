@@ -18,7 +18,7 @@ export type ValueFilterTypes = {
 const valueFilterTypes: ValueFilterTypes = {
   colors: [
     {
-      name: 'красный',
+      name: 'белый',
       value: '#ffffff'
     },
     {
