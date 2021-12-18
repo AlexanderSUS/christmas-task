@@ -5,9 +5,9 @@ type MinMax = {
     maxRange: number;
 };
 
-type Values = { colors: boolean[]; shapes: boolean[]; sizes: boolean[] };
+export type Values = { colors: boolean[]; shapes: boolean[]; sizes: boolean[] };
 
-interface SettingsType {
+export interface SettingsType {
     values: Values;
     ranges: MinMax[];
     favourite: boolean[];
@@ -15,18 +15,20 @@ interface SettingsType {
 }
 
 export interface SettingsTypeClassInt {
+  defaultSettings: SettingsType;
   settings: SettingsType;
-  loadSettings(): void;
+  reset(): void;
 }
 
 export class Settings  implements SettingsTypeClassInt {
 
+  defaultSettings: SettingsType;
   settings: SettingsType;
 
   constructor(data: Toy[]) {
 
-    this.settings =  {
-      values: {
+    this.defaultSettings = {
+        values: {
         colors: new Array(5).fill(false) as Array<boolean>,
         shapes: new Array(5).fill(false) as Array<boolean>,
         sizes: new Array(3).fill(false) as Array<boolean>,
@@ -44,12 +46,12 @@ export class Settings  implements SettingsTypeClassInt {
       favourite: new Array(60).fill(false),
       sortState: 0,
     }
+
+    this.settings = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem('christmas-settings')!) : this.defaultSettings;  
+
   }
 
-  loadSettings() {
-    const savedSettings = localStorage.getItem('christmas-settings');
-    if (savedSettings !== null) {
-      this.settings = JSON.parse(savedSettings);
-    }
+  reset() {
+    this.settings = this.defaultSettings;
   }
 }
