@@ -11,6 +11,7 @@ interface SettingsType {
     values: Values;
     ranges: MinMax[];
     favourite: boolean[];
+    sortState: number;
 }
 
 export interface SettingsTypeClassInt {
@@ -41,6 +42,7 @@ export class Settings  implements SettingsTypeClassInt {
         },
       ],
       favourite: new Array(60).fill(false),
+      sortState: 0,
     }
   }
 
