@@ -45,6 +45,4 @@ export class RangeFilter implements RangeFilterInt{
       }
     });
   }
-
-
 }

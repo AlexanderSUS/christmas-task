@@ -1,17 +1,34 @@
 .main {
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
+ 
+  padding: 1rem 1rem;
+  
   background-image: url(../assets/bg.jpg);
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
 .filters {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: stretch;
+
+  max-width: 80%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
 }
 
 .filter {
+  flex-grow: 1;
+}
+
+.filter:nth-of-type(2) {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.filter, .toy-card {
   border-radius: 10px;
   background-color: rgba(31, 112, 127, .3);
   padding: 1rem;
@@ -22,7 +39,7 @@
   display: block;
 }
 
-.filter__title, .filter__subtitle {
+.filter__title, .filter__subtitle, .property-title {
   margin: 0.5rem;
 }
 
@@ -30,3 +47,4 @@
 @import './rangeFilter.scss';
 @import './sortFilter.scss';
 @import './toysContainer.scss';
+@import './toyCard.scss';

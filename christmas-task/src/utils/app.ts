@@ -1,10 +1,10 @@
 import {SettingsTypeClassInt } from './settings';
-import { Toy } from '../appData/toys';
+import toys, { Toy } from '../appData/toys';
 import { ValueFilterTypes } from '../appData/valueFIlterTypes'; 
 import { ValueFilter, ValueFIlterInt } from '../components/valueFilter';
 import { RangeFilter, RangeFilterInt } from '../components/range';
 import { SortFilter, SortFilterInt } from '../components/sort';
-// import { ToyCard } from '../components/toyCard/toyCard';
+import { ToyCard } from '../components/toyCard';
 
 export class App {
 
@@ -17,9 +17,7 @@ export class App {
   rangeFilterYear: RangeFilterInt; 
   sort: SortFilterInt;
 
-  constructor(settings: SettingsTypeClassInt, toys: Toy[], valueFilterTypes: ValueFilterTypes,
-    
-    ) {
+  constructor(settings: SettingsTypeClassInt, toys: Toy[], valueFilterTypes: ValueFilterTypes) {
     this.settings = settings;
     this.toys = toys;
     this.toysContainer = document.querySelector('.toys-container')!;
@@ -35,5 +33,15 @@ export class App {
     this.rangeFilterCount.init();
     this.rangeFilterYear.init();
     this.sort.init();
+    this.showToys();
+  }
+
+  showToys() {
+    
+    this.toys.forEach((toy) => {
+      const toyCard = new ToyCard(toy);
+      this.toysContainer.appendChild(toyCard.fill());
+    })
+
   }
 }
