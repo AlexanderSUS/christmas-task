@@ -1,0 +1,53 @@
+.filter__container_range {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count-min,
+.year-min {
+  margin-right: 1rem;
+}
+
+.count-max, 
+.year-max {
+  margin-left: 1rem;
+}
+
+.count-min,
+.count-max, 
+.year-min,
+.year-max {
+  width: 6rem;
+
+  text-align: center;
+
+  padding: 0.2rem;
+
+  border-radius: 20px;
+  border: 1px solid #278d9f;
+  backdrop-filter: blur(2px);
+}
+
+.noUi-connects {
+  background: #278d9f;
+}
+
+.filter__range {
+  height: 5px;
+  width: 100%;
+}
+
+.filter__range .noUi-handle {
+  height: 12px;
+  width: 12px;
+  top: -4px;
+  right: -6px; /* half the width */
+  border-radius: 9px;
+}
+
+.filter__range .noUi-handle::before,
+.filter__range .noUi-handle::after {
+    display: none;
+}

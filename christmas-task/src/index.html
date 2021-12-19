@@ -9,7 +9,88 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <title>Christmas-task</title>
 </head>
-<body id="root" class="root">
-  
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <ul class="navbar__list">
+        <li class="navbar__list-item">
+          <a href="#" class="navbar__link">
+            <img src="./assets/svg/tree.svg" class="navbar__img">
+          </a>
+        </li>
+        <li class="navbar__list-item">
+          <a href="#" class="navbar__link">ИГРУШКИ</a>
+        </li>
+        <li class="navbar__list-item">
+          <a href="#" class="navbar__link">ЁЛКА</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="search-bar">
+      <input class="search-bar__input" type="search" autocomplete="off" placeholder="Поиск игрушек">
+      <div class="search-bar__favourite">
+        <span class="search-bar__favourite-value">0</span>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="filters">
+      <div class="filter filter_value">
+        <h3 class="filter__title">ФИЛЬТРЫ ПО ЗНАЧЕНИЮ</h3>
+        <div class="filter__container_value shapes">
+          <h6 class="filter__subtitle">форма:</h6>
+        </div>
+        <div class="filter__container_value colors">
+          <h6 class="filter__subtitle">цвет:</h6>
+        </div>
+        <div class="filter__container_value sizes">
+          <h6 class="filter__subtitle">размер:</h6>
+        </div>
+        <div class="filter__container_value check">
+          <h6 class="filter__subtitle favourite">только любиыме:</h6>
+          <input class="filter__input" type="checkbox">
+        </div>
+      </div>
+      <div class="filter filter_range">
+        <h3 class="filter__title">ФИЛЬТРЫ ПО ДИАПАЗОНУ</h3>
+        <h6 class="filter__subtitle">Количество экземпляров:</h6>
+        <div class="filter__container_range">
+          <span class="count-min"></span>
+          <div class="filter__range" id="count"></div>
+          <span class="count-max"></span>
+        </div>
+        <h6 class="range-filter__subtitle">Год приобретения:</h6>
+        <div class="filter__container_range">
+          <span class="year-min"></span>
+          <div class="filter__range" id="year"></div>
+          <span class="year-max"></span>
+        </div>
+      </div>
+      <div class="filter filter_sort">
+        <h3 class="filter__title">СОРТИРОВКА</h3>
+        <select class="filter__select" id="sort">
+          <option value="sort-name-min">По названию от «А» до «Я»</option>
+           <option value="sort-name-max">По названию от «Я» до «А»</option>
+           <option value="sort-count-min">По количеству по возрастанию</option>
+           <option value="sort-count-max">По количеству по убыванию</option>
+         </select>
+         <button class="filter__reset reset">Сброс фильтров</button>
+      </div>
+    </section>
+    <section class="toys-container"></section>
+  </main>
+  <footer class="footer">
+    <div class="footer__info">
+      <span class="footer__text">©</span>
+      <span class="footer__text">2021</span>
+      <span class="footer__text">Alexander Suslov</span>
+      <a class="footer__link footer__link_git" href="https://github.com/AlexanderSUS">
+        <img class="footer__img" src="./assets/svg/github.svg">
+      </a>
+    </div>
+    <a class="footer__link footer__link_rss" href="https://rs.school/">
+      <img class="footer__img" src="./assets/svg/github.svg">
+    </a>
+  </footer> 
 </body>
 </html>

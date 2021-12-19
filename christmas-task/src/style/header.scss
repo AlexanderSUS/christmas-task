@@ -1,4 +1,40 @@
-@use '../../../style/vars.scss';
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: $header-height;
+  background-color: $dark-color;
+}
+
+.navbar {
+  display: flex;
+}
+
+.navbar__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 0.2;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__list-item {
+  text-decoration: none;
+  list-style: none;
+  padding-right: 2vw;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: $main-font-color;
+}
+
+.navbar__img {
+  height: calc($header-height * 0.8);
+}
 
 .search-bar {
   display: flex;
@@ -19,23 +55,23 @@
   color: #fff;
   font-size: 18px;
   background-color: rgba(31, 112, 127, .3);
-  background-image: url("../../../assets/svg/search.svg");
+  background-image: url("../assets/svg/search.svg");
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 330px center;
 }
 
-.search-bar__output {
+.search-bar__favourite {
   width: 48px;
   height: 60px;
-  background-image: url("../../../assets/svg/ball-2.svg");
+  background-image: url("../assets/svg/ball-2.svg");
   background-size: 48px 60px;
   background-position: left -8px;
   background-repeat: no-repeat;
   transition: .3s;
 }
 
-.search-bar__value {
+.search-bar__favourite-value {
   display: inline-block;
   min-width: 40px;
   height: 40px;

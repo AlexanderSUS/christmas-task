@@ -1,13 +1,17 @@
 @use './vars.scss';
 
-html, .root {
+html, body {
   height: 100%; 
 }
 
-.root {
+body {
   font-family: $main-font-family;
   color: $main-font-color;
 
   margin: 0;
   background-color: $dark-color;
 }
+
+@import './header.scss';
+@import './main.scss';
+@import './footer.scss';

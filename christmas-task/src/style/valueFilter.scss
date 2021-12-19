@@ -1,25 +1,10 @@
-.value-filter {
-  border-radius: 10px;
-  background-color: rgba(31, 112, 127, .3);
-  padding: 1rem;
-  backdrop-filter: blur(2px);
-}
-
-.value-filter__container {
+.filter__container_value {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.value-filter__title {
-  display: block;
-}
-
-.value-filter__title, .value-filter__subtitle {
-  margin: 0.5rem;
-}
-
-.filter-button {
+.filter__button_value {
   width: 1rem;
   height: 1rem;
   margin-right: 1rem;
@@ -27,18 +12,16 @@
   border: none;
 }
 
-.filter-button.active img {
+.filter__button_value.active img {
   filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
 }
 
-.filter-button_color.active::after {
+.filter__button_color.active::after {
   position: relative;
   top: -3px;
   left: -4px;
   content: "\2713";
   font-size: 1.2rem;
-  // width: 10px;
-  // height: 10px;
   color: #121c1e;
 }
 

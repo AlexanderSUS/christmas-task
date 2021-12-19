@@ -1,7 +1,12 @@
-import './index.scss';
-import { Toy } from '../../appData/data';
+import { Toy } from '../appData/toys';
 
-export class ToyCard {
+export interface ToyCardInt {
+  toyProps: Toy;
+  card: HTMLElement;
+  fill(): HTMLElement;
+}
+
+export class ToyCard implements ToyCardInt {
 
   toyProps: Toy;
   card: HTMLElement;
@@ -20,7 +25,7 @@ export class ToyCard {
                           <div class="favourite"></div>`;
   }
 
-  render() {
+  fill() {
     Object.values(this.toyProps).forEach((value, index) => {
       this.card.querySelectorAll('.property-title')[index].textContent += ` ${value}`
     })

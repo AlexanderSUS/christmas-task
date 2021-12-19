@@ -1,19 +1,9 @@
-.sort-filter {
+.filter_sort {
   display: flex;
   flex-direction: column;
-
-  padding: 1rem;
-
-  border-radius: 10px;
-  background-color: rgba(31, 112, 127, .3);
-  backdrop-filter: blur(2px);
 }
 
-.sort-filter__title {
-  margin: 0.5rem;
-}
-
-.sort-filter__reset {
+.filter__reset {
   margin-top: auto;
 
   color: #ffffff;
@@ -28,7 +18,7 @@
   backdrop-filter: blur(2px);
 }
 
-.sort-filter__select {
+.filter__select {
   outline: none;
 
   color: #ffffff;

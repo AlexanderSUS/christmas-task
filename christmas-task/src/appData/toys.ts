@@ -9,7 +9,7 @@ export type Toy = {
   favorite: boolean;
 }
 
-export const data: Toy[] = [
+export const toys: Toy[] = [
   {
     num: '1',
     name: 'Большой шар с рисунком',
@@ -612,4 +612,4 @@ export const data: Toy[] = [
   },
 ];
 
-export default data;
+export default toys;
