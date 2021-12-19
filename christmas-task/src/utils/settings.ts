@@ -47,11 +47,12 @@ export class Settings  implements SettingsTypeClassInt {
       sortState: 0,
     }
 
-    this.current = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem('christmas-settings')!) : this.default;  
-
+    this.current = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem(
+      'christmas-settings'
+      )!) : JSON.parse(JSON.stringify(this.default));  
   }
 
   reset() {
-    this.current = this.default;
+    this.current = JSON.parse(JSON.stringify(this.default));
   }
 }

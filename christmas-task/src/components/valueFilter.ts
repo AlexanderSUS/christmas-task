@@ -1,7 +1,7 @@
 import { ValueFilterTypes } from '../appData/valueFIlterTypes';
 import { Values } from '../utils/settings';
 
-export interface ValueFIlterInt {
+export interface ValueFilterInt {
 
   filterTypes: ValueFilterTypes;
   activeBtns: Values
@@ -10,7 +10,7 @@ export interface ValueFIlterInt {
   init(): void;
 }
 
-export class ValueFilter implements ValueFIlterInt{
+export class ValueFilter implements ValueFilterInt{
 
   filterTypes: ValueFilterTypes;
   activeBtns: Values;
