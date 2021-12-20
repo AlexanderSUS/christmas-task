@@ -11,10 +11,10 @@
 .filters {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: stretch;
 
-  max-width: 80%;
+  max-width: 70%;
   margin: 0 auto;
   padding-bottom: 1rem;
 }
@@ -28,7 +28,8 @@
   margin-right: 1rem;
 }
 
-.filter, .toy-card {
+.filter,
+.toy-card {
   border-radius: 10px;
   background-color: rgba(31, 112, 127, .3);
   padding: 1rem;
@@ -39,7 +40,8 @@
   display: block;
 }
 
-.filter__title, .filter__subtitle, .property-title {
+.filter__title, .filter__subtitle,
+.property-title {
   margin: 0.5rem;
 }
 
@@ -48,3 +50,12 @@
 @import './sortFilter.scss';
 @import './toysContainer.scss';
 @import './toyCard.scss';
+
+@media (max-width: 1400px) {
+  .filters,
+  .toys-container {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
