@@ -17,7 +17,7 @@ export interface SettingsType {
 export interface SettingsTypeClassInt {
   default: SettingsType;
   current: SettingsType;
-  reset(): void;
+  reset(callback: () => void): void;
 }
 
 export class Settings  implements SettingsTypeClassInt {
@@ -34,11 +34,11 @@ export class Settings  implements SettingsTypeClassInt {
         sizes: new Array(3).fill(false) as Array<boolean>,
       },
       ranges: {
-        year: [
+        count: [
           Math.min(...toys.map(({ count }) => +count)),
           Math.max(...toys.map(({ count }) => +count)),
         ],
-        count: [
+        year: [
           Math.min(...toys.map(({ year }) => +year)),
           Math.max(...toys.map(({ year }) => +year)),
         ]
@@ -52,7 +52,8 @@ export class Settings  implements SettingsTypeClassInt {
       )!) : JSON.parse(JSON.stringify(this.default));  
   }
 
-  reset() {
+  reset(callback: () => void) {
     this.current = JSON.parse(JSON.stringify(this.default));
+    callback();
   }
 }

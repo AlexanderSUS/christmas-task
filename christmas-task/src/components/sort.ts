@@ -10,9 +10,8 @@ export interface SortFilterInt {
   sortByNumber(): void;
   sortByQuantity():void;
   sortByQuantityReverse():void;
-  listenSortReset(refresh: () => void): void;
-  listenSort(refresh: () => void):void;
   sort():void;
+  reset(): void;
 }
 
 export class SortFilter {
@@ -56,15 +55,6 @@ export class SortFilter {
     this.toys.sort((a, b) => +b.count - +a.count)
   }
 
-  listenSort(refresh: () => void) {
-    const selectElement = document.querySelector('.filter__select');
-      selectElement!.addEventListener('change', (event) => {
-        const pickedElement = <HTMLSelectElement>event.target;
-        this.settings.current.sortState = +pickedElement.value;
-        refresh();
-    });
-  }
-
   sort() {
     switch (this.settings.current.sortState) {
       case 0: this.sortByNumber(); break;
@@ -72,17 +62,12 @@ export class SortFilter {
       case 2: this.sortByAlphabetReverse(); break;
       case 3: this.sortByQuantity(); break;
       case 4: this.sortByQuantityReverse(); break;
-      default: break;
+      default: this.sortByNumber();
     }
   }
 
-  listenSortReset(refresh: () => void) {
-    const resetButton = document.querySelector('.reset');
-    resetButton?.addEventListener('click', () => {
-      const selectElement = document.querySelector('.filter__select') as HTMLSelectElement;
+  reset() {
+      const selectElement = <HTMLSelectElement>document.querySelector('.filter__select');
       selectElement.selectedIndex = 0;
-      this.settings.reset();
-      refresh();
-    });
   }
 }

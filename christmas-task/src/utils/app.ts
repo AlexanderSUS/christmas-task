@@ -24,7 +24,7 @@ export class App {
     this.toysContainer = document.querySelector('.toys-container')!;
     this.valueFilterTypes = valueFilterTypes;
     this.valueFilter = new ValueFilter(this.valueFilterTypes, this.settings.current.values);
-    this.rangeFilterCount = new RangeFilter(this.settings.current.ranges.year, 1, 'count');
+    this.rangeFilterCount = new RangeFilter(this.settings.current.ranges.count, 1, 'count');
     this.rangeFilterYear = new RangeFilter(this.settings.current.ranges.year, 10, 'year');
     this.sortFilter = new SortFilter(this.settings, this.toys); 
   }
@@ -33,23 +33,54 @@ export class App {
     this.valueFilter.init();
     this.rangeFilterCount.init();
     this.rangeFilterYear.init();
-    this.sortFilter.listenSortReset(this.refreshResult()!);
-    this.sortFilter.listenSort(this.refreshResult()!);
-    this.showToys();
+    this.listenRageFilter();
+    this.listenSortFilter();
+    this.listenReset();
+    this.showToys(this.toys);
   }
 
-  showToys(): void {
-    this.toys.forEach((toy) => {
+  listenRageFilter() {
+    this.rangeFilterCount.slider.noUiSlider.on('end', () => {
+      this.toysContainer.innerHTML = '';
+      this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+    });
+
+    this.rangeFilterYear.slider.noUiSlider.on('end', () => {
+      this.toysContainer.innerHTML = '';
+      this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+    });
+  }
+
+  listenSortFilter() {
+    const select = document.querySelector('.filter__select');
+      select!.addEventListener('change', (event) => {
+        const selectedElement = <HTMLSelectElement>event.target;
+        this.settings.current.sortState = +selectedElement.value;
+        this.refreshResult();
+    });
+  }
+
+  showToys(filteredToys: Toy[]): void {
+    filteredToys.forEach((toy) => {
       const toyCard = new ToyCard(toy);
       this.toysContainer.appendChild(toyCard.fill());
     })
   }
 
-  refreshResult(): () => void {
-    return  () =>  {
-      this.toysContainer.innerHTML = '';
-      this.sortFilter.sort();
-      this.showToys();
-    } 
+  refreshResult() {
+    this.toysContainer.innerHTML = '';
+    this.sortFilter.sort();
+    this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+  }
+
+  listenReset() {
+    document.querySelector('.reset')?.addEventListener('click', () => {
+      this.settings.reset(() => {
+        this.sortFilter.reset(); 
+        this.rangeFilterCount.reset();
+        this.rangeFilterYear.reset();
+        this.refreshResult();
+      });
+    });
   }
 }
