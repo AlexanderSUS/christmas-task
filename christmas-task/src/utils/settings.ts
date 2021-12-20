@@ -1,6 +1,6 @@
 import { Toy } from '../appData/toys';
 
-export type Values = { colors: boolean[]; shapes: boolean[]; sizes: boolean[] };
+export type Values = { [key: string]: boolean[] };
 
 export type Ranges = {
   year: number[],
