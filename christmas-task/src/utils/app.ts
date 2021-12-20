@@ -38,10 +38,21 @@ export default class App {
     this.valueFilter.init();
     this.rangeFilterCount.init();
     this.rangeFilterYear.init();
+    this.listenValueFilter();
     this.listenRageFilter();
     this.listenSortFilter();
     this.listenReset();
     this.showToys(this.toys);
+  }
+
+  listenValueFilter() {
+    document.querySelectorAll('.filter__button_value').forEach((button) => {
+      button.addEventListener('click', () => {
+        setTimeout(() => {
+          this.refreshResult();
+        }, 0);
+      });
+    });
   }
 
   listenRageFilter() {
@@ -75,7 +86,14 @@ export default class App {
   refreshResult() {
     this.toysContainer.innerHTML = '';
     this.sortFilter.sort();
-    this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+    this.showToys(
+      this.valueFilter.filter(
+        this.rangeFilterYear.filter(
+          this.rangeFilterCount.filter(this.toys)
+        )
+      )
+    );
+    // this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
   }
 
   listenReset() {

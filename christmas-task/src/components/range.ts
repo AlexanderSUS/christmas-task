@@ -11,7 +11,6 @@ export interface RangeFilterInt {
   init(): void;
   createInputRange(): void;
   initRangeListener():void;
-  filterOnUpdate(refresh: () => void): void;
   filter(toys: Toy[]): Toy[];
   reset(): void;
 }
@@ -61,12 +60,6 @@ export class RangeFilter implements RangeFilterInt {
     this.slider.noUiSlider.on('update', (values: any, handle: any) => {
       outputs[handle].innerHTML = values[handle].slice(0, -3);
       settings[handle] = +values[handle].slice(0, -3);
-    });
-  }
-
-  filterOnUpdate(refresh: () => void) {
-    this.slider.noUiSlider.on('end', () => {
-      refresh();
     });
   }
 
