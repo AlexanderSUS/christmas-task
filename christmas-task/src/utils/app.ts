@@ -1,22 +1,27 @@
 import { SettingsTypeClassInt } from './settings';
 import { Toy } from '../appData/toys';
-import { ValueFilterTypes } from '../appData/valueFIlterTypes'; 
+import { ValueFilterTypes } from '../appData/valueFIlterTypes';
 import { ValueFilter, ValueFilterInt } from '../components/valueFilter';
 import { RangeFilter, RangeFilterInt } from '../components/range';
 import { SortFilter, SortFilterInt } from '../components/sort';
 import { ToyCard } from '../components/toyCard';
 
-export class App {
-
+export default class App {
   settings: SettingsTypeClassInt;
-  toys: Toy[];
-  toysContainer: HTMLElement;
-  valueFilterTypes: ValueFilterTypes;
-  valueFilter: ValueFilterInt; 
-  rangeFilterCount: RangeFilterInt;
-  rangeFilterYear: RangeFilterInt; 
-  sortFilter: SortFilterInt;
 
+  toys: Toy[];
+
+  toysContainer: HTMLElement;
+
+  valueFilterTypes: ValueFilterTypes;
+
+  valueFilter: ValueFilterInt;
+
+  rangeFilterCount: RangeFilterInt;
+
+  rangeFilterYear: RangeFilterInt;
+
+  sortFilter: SortFilterInt;
 
   constructor(settings: SettingsTypeClassInt, toys: Toy[], valueFilterTypes: ValueFilterTypes) {
     this.settings = settings;
@@ -26,7 +31,7 @@ export class App {
     this.valueFilter = new ValueFilter(this.valueFilterTypes, this.settings.current.values);
     this.rangeFilterCount = new RangeFilter(this.settings.current.ranges.count, 1, 'count');
     this.rangeFilterYear = new RangeFilter(this.settings.current.ranges.year, 10, 'year');
-    this.sortFilter = new SortFilter(this.settings, this.toys); 
+    this.sortFilter = new SortFilter(this.settings, this.toys);
   }
 
   init() {
@@ -53,10 +58,10 @@ export class App {
 
   listenSortFilter() {
     const select = document.querySelector('.filter__select');
-      select!.addEventListener('change', (event) => {
-        const selectedElement = <HTMLSelectElement>event.target;
-        this.settings.current.sortState = +selectedElement.value;
-        this.refreshResult();
+    select!.addEventListener('change', (event) => {
+      const selectedElement = <HTMLSelectElement>event.target;
+      this.settings.current.sortState = +selectedElement.value;
+      this.refreshResult();
     });
   }
 
@@ -64,7 +69,7 @@ export class App {
     filteredToys.forEach((toy) => {
       const toyCard = new ToyCard(toy);
       this.toysContainer.appendChild(toyCard.fill());
-    })
+    });
   }
 
   refreshResult() {
@@ -76,7 +81,7 @@ export class App {
   listenReset() {
     document.querySelector('.reset')?.addEventListener('click', () => {
       this.settings.reset(() => {
-        this.sortFilter.reset(); 
+        this.sortFilter.reset();
         this.rangeFilterCount.reset();
         this.rangeFilterYear.reset();
         this.refreshResult();

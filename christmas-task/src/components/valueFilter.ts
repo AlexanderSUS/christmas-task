@@ -10,30 +10,30 @@ export interface ValueFilterInt {
   init(): void;
 }
 
-export class ValueFilter implements ValueFilterInt{
-
+export class ValueFilter implements ValueFilterInt {
   filterTypes: ValueFilterTypes;
+
   activeBtns: Values;
 
-  constructor(valueFilterTypes: ValueFilterTypes , activeBtns: Values) {
+  constructor(valueFilterTypes: ValueFilterTypes, activeBtns: Values) {
     this.filterTypes = valueFilterTypes;
     this.activeBtns = activeBtns;
   }
 
   fillValues(): void {
     Object.keys(this.filterTypes).forEach((key) => {
-      const propertyLis =  this.filterTypes[key as keyof typeof this.filterTypes];
+      const propertyLis = this.filterTypes[key as keyof typeof this.filterTypes];
       const filter = document.querySelector(`.${key}`);
 
       propertyLis.forEach((element, index) => {
-
         const button = document.createElement('button');
         button.classList.add('filter__button_value');
         button.addEventListener('click', () => {
           button.classList.toggle('active');
-          this.activeBtns[key as keyof typeof this.activeBtns][index] =
-          this.activeBtns[key as keyof typeof this.activeBtns][index] ? false : true;
-        })
+          this.activeBtns[
+            key as keyof typeof this.activeBtns
+          ][index] = !this.activeBtns[key as keyof typeof this.activeBtns][index];
+        });
 
         if (this.activeBtns[key as keyof typeof this.activeBtns][index]) {
           button.classList.add('active');
@@ -45,9 +45,9 @@ export class ValueFilter implements ValueFilterInt{
           buttonImage.src = element.value;
           button.appendChild(buttonImage);
         } else {
-        button.classList.add('filter__button_color'); 
-        button.style.backgroundColor = element.value;
-        }      
+          button.classList.add('filter__button_color');
+          button.style.backgroundColor = element.value;
+        }
 
         filter?.appendChild(button);
       });

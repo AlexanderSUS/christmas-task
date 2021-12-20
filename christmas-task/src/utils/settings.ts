@@ -8,10 +8,10 @@ export type Ranges = {
 }
 
 export interface SettingsType {
-    values: Values;
-    ranges: Ranges;
-    favourite: boolean[];
-    sortState: number;
+  values: Values;
+  ranges: Ranges;
+  favourite: boolean[];
+  sortState: number;
 }
 
 export interface SettingsTypeClassInt {
@@ -20,13 +20,12 @@ export interface SettingsTypeClassInt {
   reset(callback: () => void): void;
 }
 
-export class Settings  implements SettingsTypeClassInt {
-
+export class Settings implements SettingsTypeClassInt {
   default: SettingsType;
+
   current: SettingsType;
 
   constructor(toys: Toy[]) {
-
     this.default = {
       values: {
         colors: new Array(5).fill(false) as Array<boolean>,
@@ -41,15 +40,15 @@ export class Settings  implements SettingsTypeClassInt {
         year: [
           Math.min(...toys.map(({ year }) => +year)),
           Math.max(...toys.map(({ year }) => +year)),
-        ]
+        ],
       },
       favourite: new Array(60).fill(false),
       sortState: 0,
-    }
+    };
 
     this.current = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem(
-      'christmas-settings'
-      )!) : JSON.parse(JSON.stringify(this.default));  
+      'christmas-settings',
+    )!) : JSON.parse(JSON.stringify(this.default));
   }
 
   reset(callback: () => void) {

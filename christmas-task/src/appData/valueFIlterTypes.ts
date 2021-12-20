@@ -19,23 +19,23 @@ const valueFilterTypes: ValueFilterTypes = {
   colors: [
     {
       name: 'белый',
-      value: '#ffffff'
+      value: '#ffffff',
     },
     {
       name: 'желтый',
-      value: '#fdd700'
+      value: '#fdd700',
     },
     {
       name: 'красный',
-      value: '#fd0000'
+      value: '#fd0000',
     },
     {
       name: 'синий',
-      value: '#2299eb'
+      value: '#2299eb',
     },
     {
       name: 'зелёный',
-      value: '#08aa05'
+      value: '#08aa05',
     },
   ],
   shapes: [
@@ -45,19 +45,19 @@ const valueFilterTypes: ValueFilterTypes = {
     },
     {
       name: 'колокольчик',
-      value: Bell, 
+      value: Bell,
     },
     {
       name: 'шишка',
-      value: Cone, 
+      value: Cone,
     },
     {
       name: 'снежинка',
-      value: Snowflake, 
+      value: Snowflake,
     },
     {
       name: 'фигурка',
-      value: Toy, 
+      value: Toy,
     },
   ],
   sizes: [
@@ -73,7 +73,7 @@ const valueFilterTypes: ValueFilterTypes = {
       name: 'малый',
       value: Ball,
     },
-  ]
-}
+  ],
+};
 
 export default valueFilterTypes;

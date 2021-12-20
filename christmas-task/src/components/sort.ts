@@ -1,10 +1,10 @@
-import { SettingsTypeClassInt } from "../utils/settings";
-import { Toy } from "../appData/toys";
-
+import { SettingsTypeClassInt } from '../utils/settings';
+import { Toy } from '../appData/toys';
 
 export interface SortFilterInt {
   settings: SettingsTypeClassInt;
   toys: Toy[]
+  selectElement: HTMLSelectElement
   sortByAlphabet(): void;
   sortByAlphabetReverse(): void;
   sortByNumber(): void;
@@ -16,19 +16,23 @@ export interface SortFilterInt {
 
 export class SortFilter {
   settings: SettingsTypeClassInt;
+
   toys: Toy[];
+
+  selectElement: HTMLSelectElement;
 
   constructor(settings: SettingsTypeClassInt, toys: Toy[]) {
     this.settings = settings;
     this.toys = toys;
+    this.selectElement = <HTMLSelectElement>document.querySelector('.filter__select')
   }
 
   sortByAlphabet() {
     this.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
-      if (name1 > name2) { return 1;}
-      if (name1 < name2) { return -1;}
+      if (name1 > name2) { return 1; }
+      if (name1 < name2) { return -1; }
       return 0;
     });
   }
@@ -37,22 +41,22 @@ export class SortFilter {
     this.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
-      if (name1 < name2) { return 1;}
-      if (name1 > name2) { return -1;}
+      if (name1 < name2) { return 1; }
+      if (name1 > name2) { return -1; }
       return 0;
     });
   }
 
   sortByNumber() {
-    this.toys.sort((a, b) => +a.num- +b.num)
+    this.toys.sort((a, b) => +a.num - +b.num);
   }
 
   sortByQuantity() {
-    this.toys.sort((a, b) => +a.count - +b.count)
+    this.toys.sort((a, b) => +a.count - +b.count);
   }
 
   sortByQuantityReverse() {
-    this.toys.sort((a, b) => +b.count - +a.count)
+    this.toys.sort((a, b) => +b.count - +a.count);
   }
 
   sort() {
@@ -67,7 +71,6 @@ export class SortFilter {
   }
 
   reset() {
-      const selectElement = <HTMLSelectElement>document.querySelector('.filter__select');
-      selectElement.selectedIndex = 0;
+    this.selectElement.selectedIndex = 0;
   }
 }
