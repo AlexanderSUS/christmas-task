@@ -54,13 +54,19 @@ export class Settings implements SettingsTypeClassInt {
       },
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.current = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem(
       'christmas-settings',
     )!) : JSON.parse(JSON.stringify(this.default));
   }
 
   reset(callback: () => void) {
-    this.current = JSON.parse(JSON.stringify(this.default));
+    this.resetFavourite();
     callback();
+  }
+
+  resetFavourite() {
+    this.current.favoriteFilter.isEnabled = false;
+    this.current.favourite.fill(false);
   }
 }

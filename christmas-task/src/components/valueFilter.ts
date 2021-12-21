@@ -14,6 +14,9 @@ export interface ValueFilterInt {
   filter(toy: Toy[]): Toy[];
   getFilteredList(toys: Toy[], key: string): Toy[];
   init(): void;
+  resetValueFilter(): void;
+  resetFavoriteFilter(): void;
+  reset(): void;
 }
 
 export class ValueFilter implements ValueFilterInt {
@@ -102,5 +105,27 @@ export class ValueFilter implements ValueFilterInt {
       });
     });
     return filterEnabled ? Array.from(filtered) : toys;
+  }
+
+  reset() {
+    this.resetFavoriteFilter();
+    this.resetValueFilter();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  resetValueFilter() {
+    document.querySelectorAll('.active').forEach((element) => {
+      element.classList.remove('active');
+    });
+    Object.keys(this.filterStates).forEach((key) => {
+      this.filterStates[key].fill(false);
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  resetFavoriteFilter() {
+    const checkbox = document.querySelector('.filter__input') as HTMLInputElement;
+    checkbox.checked = false;
+    this.favoriteFilter.isEnabled = false;
   }
 }

@@ -26,6 +26,7 @@ export default class App {
   constructor(settings: SettingsTypeClassInt, toys: Toy[], valueFilterTypes: ValueFilterTypes) {
     this.settings = settings;
     this.toys = toys;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.toysContainer = document.querySelector('.toys-container')!;
     this.valueFilterTypes = valueFilterTypes;
     this.valueFilter = new ValueFilter(
@@ -74,6 +75,7 @@ export default class App {
 
   listenSortFilter() {
     const select = document.querySelector('.filter__select');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     select!.addEventListener('change', (event) => {
       const selectedElement = <HTMLSelectElement>event.target;
       this.settings.current.sortState = +selectedElement.value;
@@ -90,6 +92,7 @@ export default class App {
   }
 
   showToys(filteredToys: Toy[]): void {
+    this.showNoResult(filteredToys.length);
     filteredToys.forEach((toy) => {
       const toyCard = new ToyCard(toy);
       this.toysContainer.appendChild(toyCard.fill());
@@ -114,8 +117,19 @@ export default class App {
         this.sortFilter.reset();
         this.rangeFilterCount.reset();
         this.rangeFilterYear.reset();
+        this.valueFilter.reset();
         this.refreshResult();
       });
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  showNoResult(result: number) {
+    const noResult = document.querySelector('.no-result') as HTMLSpanElement;
+    if (result === 0) {
+      noResult.innerHTML = 'Под ваши критерии не подходит ни одна игрушка :( ...';
+    } else {
+      noResult.innerHTML = '';
+    }
   }
 }

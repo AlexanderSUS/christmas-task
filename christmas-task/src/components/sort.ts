@@ -24,7 +24,7 @@ export class SortFilter {
   constructor(settings: SettingsTypeClassInt, toys: Toy[]) {
     this.settings = settings;
     this.toys = toys;
-    this.selectElement = <HTMLSelectElement>document.querySelector('.filter__select')
+    this.selectElement = <HTMLSelectElement>document.querySelector('.filter__select');
   }
 
   sortByAlphabet() {
