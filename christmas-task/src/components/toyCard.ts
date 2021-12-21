@@ -5,6 +5,7 @@ export interface ToyCardInt {
   toyProps: Toy;
   card: HTMLElement;
   fill(): HTMLElement;
+  setCardListener(): void;
 }
 
 export class ToyCard implements ToyCardInt {
@@ -45,7 +46,29 @@ export class ToyCard implements ToyCardInt {
       }
     });
     this.card.style.backgroundImage = `url(./assets/toys/${this.toyProps.num}.png)`;
+    this.setCardListener();
 
     return this.card;
+  }
+
+  setCardListener() {
+    // document.querySelectorAll('.toy-card').forEach((card) => {
+    this.card.addEventListener('click', () => {
+      const selectedNum = document.querySelector('.selected-toys') as HTMLSpanElement;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const currenSelectedNum = +selectedNum.textContent!;
+      if (currenSelectedNum <= 20) {
+        this.card.classList.toggle('selected');
+        if (selectedNum != null) {
+          selectedNum.textContent = this.card.classList.contains(
+            'selected',
+          ) ? (currenSelectedNum + 1).toString() : (currenSelectedNum - 1).toString();
+        }
+      } else {
+        // eslint-disable-next-line no-alert
+        alert('Извините, все слоты заполнены');
+      }
+    });
+    // });
   }
 }

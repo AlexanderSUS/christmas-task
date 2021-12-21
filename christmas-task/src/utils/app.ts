@@ -120,6 +120,10 @@ export default class App {
         this.valueFilter.reset();
         this.refreshResult();
       });
+      const selected = document.querySelector('.selected-toys') as HTMLSpanElement;
+      if (selected != null) {
+        selected.textContent = '0';
+      }
     });
   }
 
