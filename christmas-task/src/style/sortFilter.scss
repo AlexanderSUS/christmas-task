@@ -8,7 +8,7 @@
 
   color: #ffffff;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
 
   padding: 0.5em 1em;
 
@@ -16,6 +16,16 @@
   border-radius: 20px;
   border: 1px solid #278d9f;
   backdrop-filter: blur(2px);
+}
+
+.filter__reset:hover {
+  background-color: #278d9f;
+  border: 1px solid #ffffff;
+}
+
+.filter__reset:active {
+  background-color: #121c1e;
+  border: 1px solid #278d9f;;
 }
 
 .filter__select {

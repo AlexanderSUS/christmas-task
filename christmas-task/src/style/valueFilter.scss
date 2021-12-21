@@ -2,14 +2,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 1em;
+}
+
+.filter__container_value:first-of-type {
+  padding-top: 0;
 }
 
 .filter__button_value {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 1rem;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.9em;
   background-color: transparent;
   border: none;
+}
+
+.colors .filter__button_value {
+  margin-left: 0.9em;
+  margin-right: 0;
 }
 
 .filter__button_value.active img {
@@ -30,7 +40,12 @@
   height: 1.2rem;
 }
 
-.size .filter-button__image:first-of-type {
+.sizes .filter__button_value:nth-of-type(1) img {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.sizes .filter__button_value:nth-of-type(2) img {
+  width: 1.35rem;
+  height: 1.35rem;
 }

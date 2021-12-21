@@ -26,7 +26,7 @@ export class ToyCard implements ToyCardInt {
                             <p class="property-title">Цвет:</p>
                             <p class="property-title">Размер:</p>
                             <p class="property-title">Любимая:</p>
-                            <div class="property-title favourite"></div>`;
+                            <div class="property-title"></div>`;
   }
 
   fill() {
@@ -35,7 +35,11 @@ export class ToyCard implements ToyCardInt {
     Object.values(this.toyProps).forEach((value, index) => {
       if (index !== 0) {
         if (typeof value === 'boolean') {
+          // eslint-disable-next-line no-param-reassign
           value = value ? 'да' : 'нет';
+          if (value) {
+            props[props.length - 1].classList.add('favorite');
+          }
         }
         props[index - 1].innerHTML += ` ${value}`;
       }

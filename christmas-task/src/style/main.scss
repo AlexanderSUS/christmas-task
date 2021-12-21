@@ -1,7 +1,7 @@
 .main {
   min-height: calc(100vh - 100px);
  
-  padding: 1rem 1rem;
+  padding: 0.5em 0;
   
   background-image: url(../assets/bg.jpg);
   background-attachment: fixed;
@@ -16,7 +16,7 @@
 
   max-width: 70%;
   margin: 0 auto;
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 
 .filter {
@@ -24,31 +24,50 @@
 }
 
 .filter:nth-of-type(2) {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .filter,
 .toy-card {
   border-radius: 10px;
   background-color: rgba(31, 112, 127, .3);
-  padding: 1rem;
+  padding: 1em;
   backdrop-filter: blur(2px);
 }
 
 .filter__title {
   display: block;
+  font-size: 1.1em;
+  padding-bottom: 1em;
 }
 
-.filter__title, .filter__subtitle,
+.filter__subtitle {
+  font-size: 1em;
+}
+
+.filter__title,
+.filter__subtitle {
+  margin: 0.2em;
+}
 .property-title {
-  margin: 0.5rem;
+  margin: 0.3em;
+}
+
+.toys-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+
+  max-width: 70%;
+  margin: 0 auto;
 }
 
 @import './valueFilter.scss';
 @import './rangeFilter.scss';
 @import './sortFilter.scss';
-@import './toysContainer.scss';
 @import './toyCard.scss';
 
 @media (max-width: 1400px) {
@@ -57,5 +76,7 @@
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

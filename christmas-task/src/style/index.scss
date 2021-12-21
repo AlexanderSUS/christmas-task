@@ -12,6 +12,17 @@ body {
   background-color: $dark-color;
 }
 
+button {
+  cursor: pointer;
+}
+
 @import './header.scss';
 @import './main.scss';
 @import './footer.scss';
+
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 12px;
+  }
+}
