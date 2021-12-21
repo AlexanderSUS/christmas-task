@@ -7,11 +7,16 @@ export type Ranges = {
   count: number[],
 }
 
+export interface FavoriteFilter {
+  isEnabled: boolean
+}
+
 export interface SettingsType {
   values: Values;
   ranges: Ranges;
   favourite: boolean[];
   sortState: number;
+  favoriteFilter: FavoriteFilter;
 }
 
 export interface SettingsTypeClassInt {
@@ -42,8 +47,11 @@ export class Settings implements SettingsTypeClassInt {
           Math.max(...toys.map(({ year }) => +year)),
         ],
       },
-      favourite: new Array(60).fill(false),
+      favourite: toys.map(({ favorite }) => favorite),
       sortState: 0,
+      favoriteFilter: {
+        isEnabled: false,
+      },
     };
 
     this.current = localStorage.getItem('christmas-settings') ? JSON.parse(localStorage.getItem(

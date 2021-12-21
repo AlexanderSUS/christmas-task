@@ -28,7 +28,11 @@ export default class App {
     this.toys = toys;
     this.toysContainer = document.querySelector('.toys-container')!;
     this.valueFilterTypes = valueFilterTypes;
-    this.valueFilter = new ValueFilter(this.valueFilterTypes, this.settings.current.values);
+    this.valueFilter = new ValueFilter(
+      this.valueFilterTypes,
+      this.settings.current.values,
+      this.settings.current.favoriteFilter,
+    );
     this.rangeFilterCount = new RangeFilter(this.settings.current.ranges.count, 1, 'count');
     this.rangeFilterYear = new RangeFilter(this.settings.current.ranges.year, 10, 'year');
     this.sortFilter = new SortFilter(this.settings, this.toys);
@@ -42,6 +46,7 @@ export default class App {
     this.listenRageFilter();
     this.listenSortFilter();
     this.listenReset();
+    this.listenSortFavorites();
     this.showToys(this.toys);
   }
 
@@ -76,6 +81,14 @@ export default class App {
     });
   }
 
+  listenSortFavorites() {
+    document.querySelector('.filter__input')?.addEventListener('change', (e) => {
+      const input = <HTMLInputElement> e.target;
+      this.settings.current.favoriteFilter.isEnabled = input.checked;
+      this.refreshResult();
+    });
+  }
+
   showToys(filteredToys: Toy[]): void {
     filteredToys.forEach((toy) => {
       const toyCard = new ToyCard(toy);
@@ -89,11 +102,10 @@ export default class App {
     this.showToys(
       this.valueFilter.filter(
         this.rangeFilterYear.filter(
-          this.rangeFilterCount.filter(this.toys)
-        )
-      )
+          this.rangeFilterCount.filter(this.toys),
+        ),
+      ),
     );
-    // this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
   }
 
   listenReset() {

@@ -1,11 +1,12 @@
 import { ValueFilterTypes } from '../appData/valueFIlterTypes';
-import { Values } from '../utils/settings';
+import { FavoriteFilter, Values } from '../utils/settings';
 import { Toy } from '../appData/toys';
 
 export interface ValueFilterInt {
 
   filterTypes: ValueFilterTypes;
-  filterStates: Values
+  filterStates: Values;
+  favoriteFilter: FavoriteFilter;
 
   createButton(buttonClass: string, key: string, index: number): void;
   addButtonImage(button: HTMLButtonElement, key: string, index: number): void;
@@ -20,9 +21,16 @@ export class ValueFilter implements ValueFilterInt {
 
   filterStates: Values;
 
-  constructor(valueFilterTypes: ValueFilterTypes, filterStates: Values) {
+  favoriteFilter: FavoriteFilter;
+
+  constructor(
+    valueFilterTypes: ValueFilterTypes,
+    filterStates: Values,
+    favoriteFilter: FavoriteFilter,
+  ) {
     this.filterTypes = valueFilterTypes;
     this.filterStates = filterStates;
+    this.favoriteFilter = favoriteFilter;
   }
 
   init() {
@@ -63,7 +71,20 @@ export class ValueFilter implements ValueFilterInt {
   }
 
   filter(toys: Toy[]): Toy[] {
-    return this.getFilteredList(this.getFilteredList(this.getFilteredList(toys, 'shapes'), 'colors'), 'sizes');
+    return this.getFavouritesList(this.getFilteredList(this.getFilteredList(this.getFilteredList(toys, 'shapes'), 'colors'), 'sizes'));
+  }
+
+  getFavouritesList(toys: Toy[]): Toy[] {
+    const favorites: Toy[] = [];
+    if (this.favoriteFilter.isEnabled) {
+      toys.forEach((toy) => {
+        if (toy.favorite) {
+          favorites.push(toy);
+        }
+      });
+      return favorites;
+    }
+    return toys;
   }
 
   getFilteredList(toys: Toy[], key: string): Toy[] {
