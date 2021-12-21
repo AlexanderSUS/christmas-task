@@ -11,7 +11,7 @@ export interface ValueFilterInt {
   addButtonImage(button: HTMLButtonElement, key: string, index: number): void;
   addButtonListener(element: HTMLButtonElement, key: string, index: number): void;
   filter(toy: Toy[]): Toy[];
-  isMatch(toy: Toy): boolean;
+  getFilteredList(toys: Toy[], key: string): Toy[];
   init(): void;
 }
 
@@ -63,44 +63,23 @@ export class ValueFilter implements ValueFilterInt {
   }
 
   filter(toys: Toy[]): Toy[] {
-    const filtered: Toy[] = [];
-
-    toys.forEach((toy) => {
-      if (this.isMatch(toy)) {
-        filtered.push(toy);
-      }
-    });
-
-    return filtered;
+    return this.getFilteredList(this.getFilteredList(this.getFilteredList(toys, 'shapes'), 'colors'), 'sizes');
   }
 
-  isMatch(toy: Toy): boolean {
-    const checked: boolean[] = [];
-    // const checked = <Set<boolean>> new Set();
+  getFilteredList(toys: Toy[], key: string): Toy[] {
+    const filtered = <Set<Toy>> new Set();
     let filterEnabled = false;
-    Object.keys(this.filterStates).forEach((props) => {
-      this.filterStates[props].forEach((selected, index) => {
+
+    toys.forEach((toy) => {
+      this.filterStates[key].forEach((selected, index) => {
         if (selected) {
           filterEnabled = true;
-          if (toy[props.slice(0, -1) as keyof typeof toy] === this.filterTypes[props][index].name) {
-            checked.push(true);
-            // checked.add(true);
-          } else {
-            checked.push(false);
-            // checked.add(false);
+          if (toy[key.slice(0, -1) as keyof typeof toy] === this.filterTypes[key][index].name) {
+            filtered.add(toy);
           }
         }
       });
     });
-    // console.log(checked[0] || checked[1] || checked[2]);
-    // return checked[0] || checked[1] || checked[2];
-    return checked.includes(true) || !filterEnabled;
-    // return checked.has(true) || !isPropUsed;
-
-    // if (checked.has(false) && checked.size === 1) {
-    //   return false;
-    // }
-
-    // return false;
+    return filterEnabled ? Array.from(filtered) : toys;
   }
 }
