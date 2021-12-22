@@ -1,9 +1,7 @@
-import { SettingsTypeClassInt } from '../utils/settings';
-import { Toy } from '../appData/toys';
+import { AppDataInt } from '../appData/appdata';
 
 export interface SortFilterInt {
-  settings: SettingsTypeClassInt;
-  toys: Toy[]
+  appData: AppDataInt;
   selectElement: HTMLSelectElement
   sortByAlphabet(): void;
   sortByAlphabetReverse(): void;
@@ -15,20 +13,17 @@ export interface SortFilterInt {
 }
 
 export class SortFilter {
-  settings: SettingsTypeClassInt;
-
-  toys: Toy[];
+  appData: AppDataInt;
 
   selectElement: HTMLSelectElement;
 
-  constructor(settings: SettingsTypeClassInt, toys: Toy[]) {
-    this.settings = settings;
-    this.toys = toys;
+  constructor(appData: AppDataInt) {
+    this.appData = appData;
     this.selectElement = <HTMLSelectElement>document.querySelector('.filter__select');
   }
 
   sortByAlphabet() {
-    this.toys.sort((a, b) => {
+    this.appData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 > name2) { return 1; }
@@ -38,7 +33,7 @@ export class SortFilter {
   }
 
   sortByAlphabetReverse() {
-    this.toys.sort((a, b) => {
+    this.appData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 < name2) { return 1; }
@@ -48,19 +43,19 @@ export class SortFilter {
   }
 
   sortByNumber() {
-    this.toys.sort((a, b) => +a.num - +b.num);
+    this.appData.toys.sort((a, b) => +a.num - +b.num);
   }
 
   sortByQuantity() {
-    this.toys.sort((a, b) => +a.count - +b.count);
+    this.appData.toys.sort((a, b) => +a.count - +b.count);
   }
 
   sortByQuantityReverse() {
-    this.toys.sort((a, b) => +b.count - +a.count);
+    this.appData.toys.sort((a, b) => +b.count - +a.count);
   }
 
   sort() {
-    switch (this.settings.current.sortState) {
+    switch (this.appData.sortState) {
       case 0: this.sortByNumber(); break;
       case 1: this.sortByAlphabet(); break;
       case 2: this.sortByAlphabetReverse(); break;

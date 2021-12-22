@@ -1,19 +1,14 @@
-import { SettingsTypeClassInt } from './settings';
-import { Toy } from '../appData/toys';
-import { ValueFilterTypes } from '../appData/valueFIlterTypes';
-import { ValueFilter, ValueFilterInt } from '../components/valueFilter';
-import { RangeFilter, RangeFilterInt } from '../components/range';
-import { SortFilter, SortFilterInt } from '../components/sort';
-import { ToyCard } from '../components/toyCard';
+import { AppDataInt } from './appData/appdata';
+import { ValueFilter, ValueFilterInt } from './components/valueFilter';
+import { RangeFilter, RangeFilterInt } from './components/range';
+import { SortFilter, SortFilterInt } from './components/sort';
+import { ToyCard } from './components/toyCard';
+import { Toy } from './appData/toys';
 
 export default class App {
-  settings: SettingsTypeClassInt;
-
-  toys: Toy[];
+  appData: AppDataInt;
 
   toysContainer: HTMLElement;
-
-  valueFilterTypes: ValueFilterTypes;
 
   valueFilter: ValueFilterInt;
 
@@ -23,20 +18,14 @@ export default class App {
 
   sortFilter: SortFilterInt;
 
-  constructor(settings: SettingsTypeClassInt, toys: Toy[], valueFilterTypes: ValueFilterTypes) {
-    this.settings = settings;
-    this.toys = toys;
+  constructor(appData: AppDataInt) {
+    this.appData = appData;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.toysContainer = document.querySelector('.toys-container')!;
-    this.valueFilterTypes = valueFilterTypes;
-    this.valueFilter = new ValueFilter(
-      this.valueFilterTypes,
-      this.settings.current.values,
-      this.settings.current.favoriteFilter,
-    );
-    this.rangeFilterCount = new RangeFilter(this.settings.current.ranges.count, 1, 'count');
-    this.rangeFilterYear = new RangeFilter(this.settings.current.ranges.year, 10, 'year');
-    this.sortFilter = new SortFilter(this.settings, this.toys);
+    this.valueFilter = new ValueFilter(this.appData);
+    this.rangeFilterCount = new RangeFilter(this.appData, this.appData.countStep, 'count');
+    this.rangeFilterYear = new RangeFilter(this.appData, this.appData.yearStep, 'year');
+    this.sortFilter = new SortFilter(this.appData);
   }
 
   init() {
@@ -48,7 +37,7 @@ export default class App {
     this.listenSortFilter();
     this.listenReset();
     this.listenSortFavorites();
-    this.showToys(this.toys);
+    this.showToys(this.appData.toys);
   }
 
   listenValueFilter() {
@@ -64,12 +53,12 @@ export default class App {
   listenRageFilter() {
     this.rangeFilterCount.slider.noUiSlider.on('end', () => {
       this.toysContainer.innerHTML = '';
-      this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+      this.refreshResult();
     });
 
     this.rangeFilterYear.slider.noUiSlider.on('end', () => {
       this.toysContainer.innerHTML = '';
-      this.showToys(this.rangeFilterYear.filter(this.rangeFilterCount.filter(this.toys)));
+      this.refreshResult();
     });
   }
 
@@ -78,7 +67,7 @@ export default class App {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     select!.addEventListener('change', (event) => {
       const selectedElement = <HTMLSelectElement>event.target;
-      this.settings.current.sortState = +selectedElement.value;
+      this.appData.sortState = +selectedElement.value;
       this.refreshResult();
     });
   }
@@ -86,7 +75,7 @@ export default class App {
   listenSortFavorites() {
     document.querySelector('.filter__input')?.addEventListener('change', (e) => {
       const input = <HTMLInputElement> e.target;
-      this.settings.current.favoriteFilter.isEnabled = input.checked;
+      this.appData.isFavoriteFilterEnabled = input.checked;
       this.refreshResult();
     });
   }
@@ -105,7 +94,7 @@ export default class App {
     this.showToys(
       this.valueFilter.filter(
         this.rangeFilterYear.filter(
-          this.rangeFilterCount.filter(this.toys),
+          this.rangeFilterCount.filter(this.appData.toys),
         ),
       ),
     );
@@ -113,7 +102,7 @@ export default class App {
 
   listenReset() {
     document.querySelector('.reset')?.addEventListener('click', () => {
-      this.settings.reset(() => {
+      this.appData.reset(() => {
         this.sortFilter.reset();
         this.rangeFilterCount.reset();
         this.rangeFilterYear.reset();

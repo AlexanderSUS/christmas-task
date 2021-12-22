@@ -1,16 +1,11 @@
-import { ValueFilterTypes } from '../appData/valueFIlterTypes';
-import { FavoriteFilter, Values } from '../utils/settings';
+/* eslint-disable class-methods-use-this */
+import { AppDataInt } from '../appData/appdata';
 import { Toy } from '../appData/toys';
+import ValueFilterButton, { ValueFilterButtonInt } from './valueButton';
 
 export interface ValueFilterInt {
-
-  filterTypes: ValueFilterTypes;
-  filterStates: Values;
-  favoriteFilter: FavoriteFilter;
-
-  createButton(buttonClass: string, key: string, index: number): void;
-  addButtonImage(button: HTMLButtonElement, key: string, index: number): void;
-  addButtonListener(element: HTMLButtonElement, key: string, index: number): void;
+  appData: AppDataInt;
+  valueFilterButton: ValueFilterButtonInt;
   filter(toy: Toy[]): Toy[];
   getFilteredList(toys: Toy[], key: string): Toy[];
   init(): void;
@@ -20,56 +15,22 @@ export interface ValueFilterInt {
 }
 
 export class ValueFilter implements ValueFilterInt {
-  filterTypes: ValueFilterTypes;
+  appData: AppDataInt;
 
-  filterStates: Values;
+  valueFilterButton: ValueFilterButtonInt;
 
-  favoriteFilter: FavoriteFilter;
-
-  constructor(
-    valueFilterTypes: ValueFilterTypes,
-    filterStates: Values,
-    favoriteFilter: FavoriteFilter,
-  ) {
-    this.filterTypes = valueFilterTypes;
-    this.filterStates = filterStates;
-    this.favoriteFilter = favoriteFilter;
+  constructor(appData: AppDataInt) {
+    this.appData = appData;
+    this.valueFilterButton = new ValueFilterButton();
   }
 
   init() {
-    Object.keys(this.filterTypes).forEach((key) => {
+    Object.keys(this.appData.valueFilterProps).forEach((key) => {
       const container = document.querySelector(`.${key}`);
-      this.filterTypes[key].forEach((element, index) => {
-        const button = this.createButton('filter__button_value', key, index);
-        if (element.value[0] !== '#') {
-          this.addButtonImage(button, key, index);
-        } else {
-          button.classList.add('filter__button_color');
-          button.style.backgroundColor = element.value;
-        }
+      this.appData.valueFilterProps[key].forEach((element, index) => {
+        const button = this.valueFilterButton.create('filter__button_value', key, index, this.appData, element.value[0] !== '#', element.value);
         container?.appendChild(button);
       });
-    });
-  }
-
-  createButton(buttonClass: string, key: string, index: number): HTMLButtonElement {
-    const button = document.createElement('button');
-    button.classList.add(buttonClass);
-    this.addButtonListener(button, key, index);
-    return button;
-  }
-
-  addButtonImage(button: HTMLButtonElement, key: string, index: number) {
-    const buttonImage = document.createElement('img');
-    buttonImage.classList.add('filter-button__image');
-    buttonImage.src = this.filterTypes[key][index].value;
-    button.appendChild(buttonImage);
-  }
-
-  addButtonListener(element: HTMLButtonElement, key: string, index: number) {
-    element.addEventListener('click', () => {
-      element.classList.toggle('active');
-      this.filterStates[key][index] = !this.filterStates[key][index];
     });
   }
 
@@ -79,7 +40,7 @@ export class ValueFilter implements ValueFilterInt {
 
   getFavouritesList(toys: Toy[]): Toy[] {
     const favorites: Toy[] = [];
-    if (this.favoriteFilter.isEnabled) {
+    if (this.appData.isFavoriteFilterEnabled) {
       toys.forEach((toy) => {
         if (toy.favorite) {
           favorites.push(toy);
@@ -95,10 +56,11 @@ export class ValueFilter implements ValueFilterInt {
     let filterEnabled = false;
 
     toys.forEach((toy) => {
-      this.filterStates[key].forEach((selected, index) => {
+      this.appData.values[key].forEach((selected, index) => {
         if (selected) {
           filterEnabled = true;
-          if (toy[key.slice(0, -1) as keyof typeof toy] === this.filterTypes[key][index].name) {
+          if (toy[key.slice(0, -1) as keyof typeof toy] === this.appData.valueFilterProps[key][
+            index].name) {
             filtered.add(toy);
           }
         }
@@ -112,20 +74,14 @@ export class ValueFilter implements ValueFilterInt {
     this.resetValueFilter();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   resetValueFilter() {
     document.querySelectorAll('.active').forEach((element) => {
       element.classList.remove('active');
     });
-    Object.keys(this.filterStates).forEach((key) => {
-      this.filterStates[key].fill(false);
-    });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   resetFavoriteFilter() {
     const checkbox = document.querySelector('.filter__input') as HTMLInputElement;
     checkbox.checked = false;
-    this.favoriteFilter.isEnabled = false;
   }
 }

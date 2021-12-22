@@ -4,15 +4,15 @@ import Cone from '../assets/svg/cone.svg';
 import Snowflake from '../assets/svg/snowflake.svg';
 import Toy from '../assets/svg/toy.svg';
 
-export type ValueFilterType = {
+export type ValueFilterProperty = {
   [key: string]: string;
 }
 
-export type ValueFilterTypes = {
-  [key: string]: ValueFilterType[];
+export type ValueFilterProps = {
+  [key: string]: ValueFilterProperty[];
 }
 
-const valueFilterTypes: ValueFilterTypes = {
+const valueFilterProps: ValueFilterProps = {
   colors: [
     {
       name: 'белый',
@@ -73,4 +73,4 @@ const valueFilterTypes: ValueFilterTypes = {
   ],
 };
 
-export default valueFilterTypes;
+export default valueFilterProps;
