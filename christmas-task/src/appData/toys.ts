@@ -7,6 +7,7 @@ export type Toy = {
   color: string,
   size: string,
   favorite: boolean;
+  selected: boolean;
 }
 
 export const toys: Toy[] = [
@@ -19,6 +20,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '2',
@@ -29,6 +31,7 @@ export const toys: Toy[] = [
     color: 'зелёный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '3',
@@ -39,6 +42,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '4',
@@ -49,6 +53,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '5',
@@ -59,6 +64,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '6',
@@ -69,6 +75,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '7',
@@ -79,6 +86,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '8',
@@ -89,6 +97,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '9',
@@ -99,6 +108,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '10',
@@ -109,6 +119,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '11',
@@ -119,6 +130,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '12',
@@ -129,6 +141,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '13',
@@ -139,6 +152,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '14',
@@ -149,6 +163,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '15',
@@ -159,6 +174,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '16',
@@ -169,6 +185,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '17',
@@ -179,6 +196,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '18',
@@ -189,6 +207,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '19',
@@ -199,6 +218,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '20',
@@ -209,6 +229,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '21',
@@ -219,6 +240,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '22',
@@ -229,6 +251,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '23',
@@ -239,6 +262,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '24',
@@ -249,6 +273,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '25',
@@ -259,6 +284,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '26',
@@ -269,6 +295,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '27',
@@ -279,6 +306,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '28',
@@ -289,6 +317,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '29',
@@ -299,6 +328,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '30',
@@ -309,6 +339,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '31',
@@ -319,6 +350,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '32',
@@ -329,6 +361,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '33',
@@ -339,6 +372,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '34',
@@ -349,6 +383,7 @@ export const toys: Toy[] = [
     color: 'зелёный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '35',
@@ -359,6 +394,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '36',
@@ -369,6 +405,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '37',
@@ -379,6 +416,7 @@ export const toys: Toy[] = [
     color: 'зелёный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '38',
@@ -389,6 +427,7 @@ export const toys: Toy[] = [
     color: 'синий',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '39',
@@ -399,6 +438,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '40',
@@ -409,6 +449,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '41',
@@ -419,6 +460,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '42',
@@ -429,6 +471,7 @@ export const toys: Toy[] = [
     color: 'зелёный',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '43',
@@ -439,6 +482,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '44',
@@ -449,6 +493,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
   {
     num: '45',
@@ -459,6 +504,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '46',
@@ -469,6 +515,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '47',
@@ -479,6 +526,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '48',
@@ -489,6 +537,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '49',
@@ -499,6 +548,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '50',
@@ -509,6 +559,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '51',
@@ -519,6 +570,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '52',
@@ -529,6 +581,7 @@ export const toys: Toy[] = [
     color: 'красный',
     size: 'большой',
     favorite: true,
+    selected: false,
   },
   {
     num: '53',
@@ -539,6 +592,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '54',
@@ -549,6 +603,7 @@ export const toys: Toy[] = [
     color: 'зелёный',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '55',
@@ -559,6 +614,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'большой',
     favorite: false,
+    selected: false,
   },
   {
     num: '56',
@@ -569,6 +625,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'малый',
     favorite: false,
+    selected: false,
   },
   {
     num: '57',
@@ -579,6 +636,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '58',
@@ -589,6 +647,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '59',
@@ -599,6 +658,7 @@ export const toys: Toy[] = [
     color: 'желтый',
     size: 'средний',
     favorite: false,
+    selected: false,
   },
   {
     num: '60',
@@ -609,6 +669,7 @@ export const toys: Toy[] = [
     color: 'белый',
     size: 'средний',
     favorite: true,
+    selected: false,
   },
 ];
 

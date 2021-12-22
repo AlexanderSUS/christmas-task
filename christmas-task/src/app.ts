@@ -83,8 +83,10 @@ export default class App {
   showToys(filteredToys: Toy[]): void {
     this.showNoResult(filteredToys.length);
     filteredToys.forEach((toy) => {
-      const toyCard = new ToyCard(toy);
-      this.toysContainer.appendChild(toyCard.fill());
+      const toyCardTemplate = new ToyCard(toy);
+      const toyCard = toyCardTemplate.fill();
+      this.toysContainer.appendChild(toyCard);
+      this.listenSelect(toyCard);
     });
   }
 
@@ -109,10 +111,18 @@ export default class App {
         this.valueFilter.reset();
         this.refreshResult();
       });
-      const selected = document.querySelector('.selected-toys') as HTMLSpanElement;
-      if (selected != null) {
-        selected.textContent = '0';
-      }
+      // const selected = document.querySelector('.selected-toys') as HTMLSpanElement;
+      // if (selected != null) {
+      //   selected.textContent = '0';
+      // }
+    });
+  }
+
+  listenSelect(toyCard: HTMLElement) {
+    toyCard.addEventListener('click', () => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const toyNum = +toyCard.getAttribute('data-num')! - 1;
+      this.appData.toys[toyNum].selected = !this.appData.toys[toyNum].selected;
     });
   }
 

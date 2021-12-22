@@ -26,15 +26,16 @@ export class ToyCard implements ToyCardInt {
                             <p class="property-title">Форма:</p>
                             <p class="property-title">Цвет:</p>
                             <p class="property-title">Размер:</p>
-                            <p class="property-title">Любимая:</p>
-                            <div class="property-title"></div>`;
+                            <p class="property-title">Любимая:</p>`;
   }
 
   fill() {
     const props = this.card.querySelectorAll('.property-title');
+    const SLELECTED = 8;
+    this.card.setAttribute('data-num', this.toyProps.num);
 
     Object.values(this.toyProps).forEach((value, index) => {
-      if (index !== 0) {
+      if (index > 1 && index < SLELECTED) {
         if (typeof value === 'boolean') {
           // eslint-disable-next-line no-param-reassign
           value = value ? 'да' : 'нет';
@@ -45,6 +46,9 @@ export class ToyCard implements ToyCardInt {
         props[index - 1].innerHTML += ` ${value}`;
       }
     });
+    if (this.toyProps.selected) {
+      this.card.classList.add('selected');
+    }
     this.card.style.backgroundImage = `url(./assets/toys/${this.toyProps.num}.png)`;
     this.setCardListener();
 
@@ -52,7 +56,6 @@ export class ToyCard implements ToyCardInt {
   }
 
   setCardListener() {
-    // document.querySelectorAll('.toy-card').forEach((card) => {
     this.card.addEventListener('click', () => {
       const selectedNum = document.querySelector('.selected-toys') as HTMLSpanElement;
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -69,6 +72,5 @@ export class ToyCard implements ToyCardInt {
         alert('Извините, все слоты заполнены');
       }
     });
-    // });
   }
 }
