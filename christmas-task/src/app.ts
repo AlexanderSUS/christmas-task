@@ -36,6 +36,7 @@ export default class App {
     this.listenRageFilter();
     this.listenSortFilter();
     this.listenReset();
+    this.listenToysReset();
     this.listenSortFavorites();
     this.showToys(this.appData.toys);
   }
@@ -111,10 +112,20 @@ export default class App {
         this.valueFilter.reset();
         this.refreshResult();
       });
-      // const selected = document.querySelector('.selected-toys') as HTMLSpanElement;
-      // if (selected != null) {
-      //   selected.textContent = '0';
-      // }
+    });
+  }
+
+  listenToysReset() {
+    document.querySelector('.reset-favorite')?.addEventListener('click', () => {
+      this.appData.toys.forEach((toy) => {
+        // eslint-disable-next-line no-param-reassign
+        toy.selected = false;
+      });
+      document.querySelectorAll('.toy-card').forEach((card) => {
+        card.classList.remove('selected');
+      });
+      const selectedNum = document.querySelector('.selected-toys') as HTMLSpanElement;
+      selectedNum.textContent = '0';
     });
   }
 
