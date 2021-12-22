@@ -6,6 +6,7 @@ export interface ToyCardInt {
   card: HTMLElement;
   fill(): HTMLElement;
   setCardListener(): void;
+  onOffSelect(selectedNumElement: HTMLSpanElement, currenSelectedNum: number): void;
 }
 
 export class ToyCard implements ToyCardInt {
@@ -35,7 +36,7 @@ export class ToyCard implements ToyCardInt {
     this.card.setAttribute('data-num', this.toyProps.num);
 
     Object.values(this.toyProps).forEach((value, index) => {
-      if (index > 1 && index < SLELECTED) {
+      if (index > 0 && index < SLELECTED) {
         if (typeof value === 'boolean') {
           // eslint-disable-next-line no-param-reassign
           value = value ? 'да' : 'нет';
@@ -57,20 +58,25 @@ export class ToyCard implements ToyCardInt {
 
   setCardListener() {
     this.card.addEventListener('click', () => {
-      const selectedNum = document.querySelector('.selected-toys') as HTMLSpanElement;
+      const selectedNumElement = document.querySelector('.selected-toys') as HTMLSpanElement;
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const currenSelectedNum = +selectedNum.textContent!;
-      if (currenSelectedNum <= 20) {
-        this.card.classList.toggle('selected');
-        if (selectedNum != null) {
-          selectedNum.textContent = this.card.classList.contains(
-            'selected',
-          ) ? (currenSelectedNum + 1).toString() : (currenSelectedNum - 1).toString();
-        }
+      const currenSelectedNum = +selectedNumElement.textContent!;
+      if (currenSelectedNum < 20) {
+        this.onOffSelect(selectedNumElement, currenSelectedNum);
+      } else if (currenSelectedNum === 20 && this.card.classList.contains('selected')) {
+        this.onOffSelect(selectedNumElement, currenSelectedNum);
       } else {
         // eslint-disable-next-line no-alert
         alert('Извините, все слоты заполнены');
       }
     });
+  }
+
+  onOffSelect(selectedNumElement: HTMLSpanElement, currenSelectedNum: number): void {
+    this.card.classList.toggle('selected');
+    // eslint-disable-next-line no-param-reassign
+    selectedNumElement.textContent = this.card.classList.contains(
+      'selected',
+    ) ? (currenSelectedNum + 1).toString() : (currenSelectedNum - 1).toString();
   }
 }

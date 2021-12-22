@@ -69,6 +69,7 @@ export class AppData implements AppDataInt {
   reset(callback: () => void) {
     this.resetFavorites();
     this.resetValues();
+    this.sortState = 0;
     callback();
   }
 
