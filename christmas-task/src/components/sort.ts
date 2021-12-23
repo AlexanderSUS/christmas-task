@@ -8,6 +8,8 @@ export interface SortFilterInt {
   sortByNumber(): void;
   sortByQuantity():void;
   sortByQuantityReverse():void;
+  sortByYear(): void;
+  sortByYearReverse(): void;
   sort():void;
   reset(): void;
 }
@@ -54,6 +56,14 @@ export class SortFilter {
     this.appData.toys.sort((a, b) => +b.count - +a.count);
   }
 
+  sortByYear() {
+    this.appData.toys.sort((a, b) => +a.year - +b.year);
+  }
+
+  sortByYearReverse() {
+    this.appData.toys.sort((a, b) => +b.year - +a.year);
+  }
+
   sort() {
     switch (this.appData.sortState) {
       case 0: this.sortByNumber(); break;
@@ -61,6 +71,8 @@ export class SortFilter {
       case 2: this.sortByAlphabetReverse(); break;
       case 3: this.sortByQuantity(); break;
       case 4: this.sortByQuantityReverse(); break;
+      case 5: this.sortByYear(); break;
+      case 6: this.sortByYearReverse(); break;
       default: this.sortByNumber();
     }
   }
