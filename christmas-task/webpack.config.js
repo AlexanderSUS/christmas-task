@@ -44,7 +44,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -53,10 +53,9 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/assets/', to: 'assets/' }
-      ]
-    }
-      ),
+        { from: 'src/assets/', to: 'assets/' },
+      ],
+    }),
   ],
   devServer: {
     static: {

@@ -2,3 +2,5 @@ $dark-color: #121C1E;
 $main-font-color: #fff;
 $main-font-family: 'Open Sans', sans-serif;
 $header-height: 60px;
+$footer-height: 50px;
+$main-height: calc(100vh - $header-height - $footer-height - 1em);

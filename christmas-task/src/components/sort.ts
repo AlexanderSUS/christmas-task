@@ -1,31 +1,28 @@
 import { AppDataInt } from '../appData/appdata';
 
 export interface SortFilterInt {
-  appData: AppDataInt;
+  parent: HTMLElement;
+  toysPageData: AppDataInt;
   selectElement: HTMLSelectElement
-  sortByAlphabet(): void;
-  sortByAlphabetReverse(): void;
-  sortByNumber(): void;
-  sortByQuantity():void;
-  sortByQuantityReverse():void;
-  sortByYear(): void;
-  sortByYearReverse(): void;
   sort():void;
   reset(): void;
 }
 
 export class SortFilter {
-  appData: AppDataInt;
+  parent: HTMLElement;
+
+  toysPageData: AppDataInt;
 
   selectElement: HTMLSelectElement;
 
-  constructor(appData: AppDataInt) {
-    this.appData = appData;
-    this.selectElement = <HTMLSelectElement>document.querySelector('.filter__select');
+  constructor(parent: HTMLElement, toysPageData: AppDataInt) {
+    this.parent = parent;
+    this.toysPageData = toysPageData;
+    this.selectElement = <HTMLSelectElement> this.parent.querySelector('.filter__select');
   }
 
-  sortByAlphabet() {
-    this.appData.toys.sort((a, b) => {
+  private sortByAlphabet() {
+    this.toysPageData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 > name2) { return 1; }
@@ -34,8 +31,8 @@ export class SortFilter {
     });
   }
 
-  sortByAlphabetReverse() {
-    this.appData.toys.sort((a, b) => {
+  private sortByAlphabetReverse() {
+    this.toysPageData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 < name2) { return 1; }
@@ -44,28 +41,28 @@ export class SortFilter {
     });
   }
 
-  sortByNumber() {
-    this.appData.toys.sort((a, b) => +a.num - +b.num);
+  private sortByNumber() {
+    this.toysPageData.toys.sort((a, b) => +a.num - +b.num);
   }
 
-  sortByQuantity() {
-    this.appData.toys.sort((a, b) => +a.count - +b.count);
+  private sortByQuantity() {
+    this.toysPageData.toys.sort((a, b) => +a.count - +b.count);
   }
 
-  sortByQuantityReverse() {
-    this.appData.toys.sort((a, b) => +b.count - +a.count);
+  private sortByQuantityReverse() {
+    this.toysPageData.toys.sort((a, b) => +b.count - +a.count);
   }
 
-  sortByYear() {
-    this.appData.toys.sort((a, b) => +a.year - +b.year);
+  private sortByYear() {
+    this.toysPageData.toys.sort((a, b) => +a.year - +b.year);
   }
 
-  sortByYearReverse() {
-    this.appData.toys.sort((a, b) => +b.year - +a.year);
+  private sortByYearReverse() {
+    this.toysPageData.toys.sort((a, b) => +b.year - +a.year);
   }
 
   sort() {
-    switch (this.appData.sortState) {
+    switch (this.toysPageData.sortState) {
       case 0: this.sortByNumber(); break;
       case 1: this.sortByAlphabet(); break;
       case 2: this.sortByAlphabetReverse(); break;

@@ -6,31 +6,26 @@ export interface ValueFilterButtonInt {
   create(buttonClass: string,
     property: string,
     propertyIndex: number,
-    appData: AppDataInt,
+    toysPageData: AppDataInt,
     isImageButton: boolean,
     color: string,
   ): HTMLButtonElement;
-
-  addButtonColor(button: HTMLButtonElement, color: string): void;
-
-  addButtonImage(
-    button: HTMLButtonElement, appData: AppDataInt, property: string, propertyIndex: number): void;
 }
 
 export default class ValueFilterButton implements ValueFilterButtonInt {
-  addButtonImage(
+  private addButtonImage(
     button: HTMLButtonElement,
-    appData: AppDataInt,
+    toysPageData: AppDataInt,
     property: string,
     propertyIndex: number,
   ) {
     const buttonImage = document.createElement('img');
     buttonImage.classList.add('filter-button__image');
-    buttonImage.src = appData.valueFilterProps[property][propertyIndex].value;
+    buttonImage.src = toysPageData.valueFilterProps[property][propertyIndex].value;
     button.appendChild(buttonImage);
   }
 
-  addButtonColor(button: HTMLButtonElement, color: string) {
+  private addButtonColor(button: HTMLButtonElement, color: string) {
     button.classList.add('filter__button_color');
     button.style.backgroundColor = color;
   }
@@ -39,7 +34,7 @@ export default class ValueFilterButton implements ValueFilterButtonInt {
     buttonClass: string,
     property: string,
     propertyIndex: number,
-    appData: AppDataInt,
+    toysPageData: AppDataInt,
     isImageButton: boolean,
     color: string,
   ) {
@@ -48,11 +43,11 @@ export default class ValueFilterButton implements ValueFilterButtonInt {
 
     button.addEventListener('click', () => {
       button.classList.toggle('active');
-      appData.values[property][propertyIndex] = !appData.values[property][propertyIndex];
+      toysPageData.values[property][propertyIndex] = !toysPageData.values[property][propertyIndex];
     });
 
     if (isImageButton) {
-      this.addButtonImage(button, appData, property, propertyIndex);
+      this.addButtonImage(button, toysPageData, property, propertyIndex);
     } else {
       this.addButtonColor(button, color);
     }

@@ -1,0 +1,79 @@
+@use './vars.scss';
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+
+  max-width: 70%;
+  margin: 0 auto;
+  padding-bottom: 1em;
+}
+
+.filter {
+  flex-grow: 1;
+}
+
+.filter:nth-of-type(2) {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.filter,
+.toy-card {
+  border-radius: 10px;
+  background-color: rgba(31, 112, 127, .3);
+  padding: 1em;
+  backdrop-filter: blur(2px);
+}
+
+.filter__title {
+  display: block;
+  font-size: 1.1em;
+  padding-bottom: 1em;
+}
+
+.filter__subtitle {
+  font-size: 1em;
+}
+
+.filter__title,
+.filter__subtitle {
+  margin: 0.2em;
+}
+.property-title {
+  margin: 0.3em;
+}
+
+.no-result {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.toys-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+@import './valueFilter.scss';
+@import './rangeFilter.scss';
+@import './sortFilter.scss';
+@import './toyCard.scss';
+
+@media (max-width: 1400px) {
+  .filters,
+  .toys-container {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
