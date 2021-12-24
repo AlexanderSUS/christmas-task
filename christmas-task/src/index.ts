@@ -11,11 +11,13 @@ import Router from './components/router';
 import { Content } from './components/content';
 import GamePage from './components/gamePage';
 import StartPage from './components/startPage';
+import trees from './appData/trees';
+import backgrounds from './appData/backgrounds';
 
 const app = new Router(
   new Content(
     new StartPage(startPage),
-    new ToysPage(toysPage, new AppData(toys, valueFilterProps)),
+    new ToysPage(toysPage, new AppData(toys, valueFilterProps, trees, backgrounds)),
     new GamePage(gamePage),
   ),
 );

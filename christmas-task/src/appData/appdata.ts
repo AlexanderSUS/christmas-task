@@ -1,5 +1,7 @@
 import { Toy } from './toys';
 import { ValueFilterProps } from './valueFilterProps';
+import { Tree } from './trees';
+import { Background } from './backgrounds';
 
 export type Values = { [key: string]: boolean[] };
 
@@ -17,6 +19,8 @@ export interface AppDataInt {
   valueFilterProps: ValueFilterProps;
   countStep: number;
   yearStep: number;
+  trees: Tree[];
+  backgrounds: Background[];
   reset(callback: () => void): void;
   resetFavorites(): void;
   resetValues(): void;
@@ -41,7 +45,11 @@ export class AppData implements AppDataInt {
 
   yearStep: number;
 
-  constructor(toys: Toy[], valueFilterProps: ValueFilterProps) {
+  trees: Tree[];
+
+  backgrounds: Background[];
+
+  constructor(toys: Toy[], valueFilterProps: ValueFilterProps, trees: Tree[], bg: Background[]) {
     this.toys = toys;
     this.values = {
       colors: new Array(valueFilterProps.colors.length).fill(false) as Array<boolean>,
@@ -64,6 +72,8 @@ export class AppData implements AppDataInt {
     this.valueFilterProps = valueFilterProps;
     this.countStep = 1;
     this.yearStep = 10;
+    this.trees = trees;
+    this.backgrounds = bg;
   }
 
   reset(callback: () => void) {
