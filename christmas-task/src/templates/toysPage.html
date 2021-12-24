@@ -1,0 +1,50 @@
+<div class="toys-page">
+  <section class="filters">
+    <div class="filter filter_value">
+      <h3 class="filter__title">ФИЛЬТРЫ ПО ЗНАЧЕНИЮ</h3>
+      <div class="filter__container_value shapes">
+        <h6 class="filter__subtitle">форма:</h6>
+      </div>
+      <div class="filter__container_value colors">
+        <h6 class="filter__subtitle">цвет:</h6>
+      </div>
+      <div class="filter__container_value sizes">
+        <h6 class="filter__subtitle">размер:</h6>
+      </div>
+      <div class="filter__container_value check">
+        <h6 class="filter__subtitle favorite">только любиыме:</h6>
+        <input class="filter__input" type="checkbox">
+      </div>
+    </div>
+    <div class="filter filter_range">
+      <h3 class="filter__title">ФИЛЬТРЫ ПО ДИАПАЗОНУ</h3>
+      <h6 class="filter__subtitle">Количество экземпляров:</h6>
+      <div class="filter__container_range">
+        <span class="count-min"></span>
+        <div class="filter__range" id="count"></div>
+        <span class="count-max"></span>
+      </div>
+      <h6 class="filter__subtitle">Год приобретения:</h6>
+      <div class="filter__container_range">
+        <span class="year-min"></span>
+        <div class="filter__range" id="year"></div>
+        <span class="year-max"></span>
+      </div>
+    </div>
+    <div class="filter filter_sort">
+      <h3 class="filter__title">СОРТИРОВКА</h3>
+      <select class="filter__select" id="sort">
+        <option value="1">По названию от «А» до «Я»</option>
+        <option value="2">По названию от «Я» до «А»</option>
+        <option value="3">По количеству по возрастанию</option>
+        <option value="4">По количеству по убыванию</option>
+        <option value="5">Oт старых к новым</option>
+        <option value="6">От новых к старым</option>
+      </select>
+      <button class="filter__reset reset">Сброс фильтров</button>
+      <button class="filter__reset reset-favorite">Сброс игрушек</button>
+    </div>
+  </section>
+  <section class="no-result"></section>
+  <section class="toys-container"></section>
+</div>

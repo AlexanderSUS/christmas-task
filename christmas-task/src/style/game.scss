@@ -1,0 +1,31 @@
+@use './vars.scss';
+
+.game-page,
+.left,
+.right,
+.option-selection {
+  display: flex;
+}
+
+.game-page {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: $main-height;
+}
+
+.tree {
+  width: 40%;
+}
+
+
+.left,
+.right {
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.option-selection {
+  flex-direction: row;
+}

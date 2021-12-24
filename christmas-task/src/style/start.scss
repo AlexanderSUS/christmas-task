@@ -1,0 +1,40 @@
+@use './vars.scss';
+
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  height: $main-height;
+}
+
+.start-title {
+  text-align: center;
+  font-size: 3.5rem;
+  border-radius: 25px;
+  border: 1px solid #278D9F;
+  background-color: rgba(31, 112, 127, .3);
+  backdrop-filter: blur(8px);
+
+  padding: 1em;
+}
+
+.start-button {
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 1em 2em;
+  border-radius: 20px;
+  border: 1px solid #278D9F;
+  background-color: rgba(31, 112, 127, .3);
+  backdrop-filter: blur(2px);
+
+  &:hover {
+    border: 1px solid #ffffff;
+  }
+
+  &:active {
+    background-color: rgba(31, 112, 127, 1);
+    border: 1px solid #278D9F;
+  }
+}
