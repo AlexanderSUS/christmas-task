@@ -3,29 +3,178 @@
 .game-page,
 .left,
 .right,
-.option-selection {
+.settings,
+.tree-selection,
+.background-selection,
+.lights-selection, 
+.option-selection,
+.toy-selection,
+.completed,
+.completed-trees {
   display: flex;
 }
 
 .game-page {
   flex-direction: row;
-  justify-content: space-between;
+}
+
+.settings {
+  justify-content: space-evenly;
   align-items: center;
-  height: $main-height;
+  width: 100%;
+}
+
+.settings-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border: none;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.sound {
+  background-image: url(../assets/svg/audio.svg);
+}
+
+.snow {
+  background-image: url(../assets/svg/snowflake.svg);
+}
+
+.stage {
+  width: 50%;
+  box-shadow: 0 0 8px 8px rgba(39, 141, 159, 0.8);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .tree {
-  width: 40%;
-}
+  height: $main-height;
+  width: auto;
 
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
 
 .left,
 .right {
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+
+  width: 25%;
+  height: $main-height;
+
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.game-title {
+  width: 100%;
+}
+
+.tree-selection,
+.background-selection,
+.toy-selection {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items:flex-start;
+  gap: 0.5em 0.5em;
+
+}
+
+.tree-element,
+.toy-element {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.tree-element,
+.bg-element,
+.toy-element {
+  background-color: rgba(255, 255, 255, .5);
+  border-radius: 5px;
+}
+
+.tree-element {
+  width: 6em;
+  height: 6em;
+}
+
+.toy-element {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  width: 5em;
+  height: 5em;
+}
+
+.bg-element {
+  width: 4.5em;
+  height: 4.5em;
+  background-size: cover;
+}
+
+.rested-toys {
+  color: #ffffff;
+  font-size: 0.9rem;
+
+  padding: 2px 6px;
+  background-color: #24C5DB;
+  border-radius: 50%;
 }
 
 .option-selection {
   flex-direction: row;
 }
+
+.completed {
+  flex-direction: column;;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.completed__container {
+  width: 90%;
+  overflow: auto;
+}
+
+.completed-trees {
+  flex-direction: row;
+  gap: 0 0.5rem;
+}
+
+.option-button {
+  margin-top: auto;
+
+  color: #ffffff;
+  text-align: center;
+  font-size: 1rem;
+
+  padding: 0.5em 1em;
+
+  background-color: transparent;
+  border-radius: 20px;
+  border: 1px solid #278d9f;
+  backdrop-filter: blur(2px);
+
+}
+
+.option-button:hover {
+  background-color: #278d9f;
+  border: 1px solid #ffffff;
+}
+
+.option-button:active {
+  background-color: #121c1e;
+  border: 1px solid #278d9f;;
+}
+
