@@ -21,6 +21,7 @@ export interface AppDataInt {
   yearStep: number;
   trees: Tree[];
   backgrounds: Background[];
+  maxFavoriteQty: number;
   reset(callback: () => void): void;
   resetFavorites(): void;
   resetValues(): void;
@@ -49,6 +50,8 @@ export class AppData implements AppDataInt {
 
   backgrounds: Background[];
 
+  maxFavoriteQty: number;
+
   constructor(toys: Toy[], valueFilterProps: ValueFilterProps, trees: Tree[], bg: Background[]) {
     this.toys = toys;
     this.values = {
@@ -68,6 +71,7 @@ export class AppData implements AppDataInt {
     };
     this.isFavorite = toys.map(({ favorite }) => favorite);
     this.isFavoriteFilterEnabled = false;
+    this.maxFavoriteQty = 20;
     this.sortState = 0;
     this.valueFilterProps = valueFilterProps;
     this.countStep = 1;
