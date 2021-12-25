@@ -7,7 +7,7 @@ import { Toy } from '../appData/toys';
 import { Section, SectionInt } from './section';
 
 export interface ToysPageInt extends SectionInt {
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
   toysContainer: HTMLElement;
   valueFilter: ValueFilterInt;
   rangeFilterCount: RangeFilterInt;
@@ -18,7 +18,7 @@ export interface ToysPageInt extends SectionInt {
 }
 
 export default class ToysPage extends Section {
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
 
   toysContainer: HTMLElement;
 
@@ -30,15 +30,15 @@ export default class ToysPage extends Section {
 
   sortFilter: SortFilterInt;
 
-  constructor(toysPage: string, toysPageData: AppDataInt) {
+  constructor(toysPage: string, appData: AppDataInt) {
     super(toysPage);
-    this.toysPageData = toysPageData;
+    this.appData = appData;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.toysContainer = this.section.querySelector('.toys-container')!;
-    this.valueFilter = new ValueFilter(this.section, this.toysPageData);
-    this.rangeFilterCount = new RangeFilter(this.section, this.toysPageData, this.toysPageData.countStep, 'count');
-    this.rangeFilterYear = new RangeFilter(this.section, this.toysPageData, this.toysPageData.yearStep, 'year');
-    this.sortFilter = new SortFilter(this.section, this.toysPageData);
+    this.valueFilter = new ValueFilter(this.section, this.appData);
+    this.rangeFilterCount = new RangeFilter(this.section, this.appData, this.appData.countStep, 'count');
+    this.rangeFilterYear = new RangeFilter(this.section, this.appData, this.appData.yearStep, 'year');
+    this.sortFilter = new SortFilter(this.section, this.appData);
   }
 
   create() {
@@ -56,7 +56,7 @@ export default class ToysPage extends Section {
     this.listenReset();
     this.listenToysReset();
     this.listenSortFavorites();
-    this.showToys(this.toysPageData.toys);
+    this.showToys(this.appData.toys);
   }
 
   private listenValueFilter() {
@@ -86,7 +86,7 @@ export default class ToysPage extends Section {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     select!.addEventListener('change', (event) => {
       const selectedElement = <HTMLSelectElement>event.target;
-      this.toysPageData.sortState = +selectedElement.value;
+      this.appData.sortState = +selectedElement.value;
       this.refreshResult();
     });
   }
@@ -94,7 +94,7 @@ export default class ToysPage extends Section {
   private listenSortFavorites() {
     this.section.querySelector('.filter__input')?.addEventListener('change', (e) => {
       const input = <HTMLInputElement> e.target;
-      this.toysPageData.isFavoriteFilterEnabled = input.checked;
+      this.appData.isFavoriteFilterEnabled = input.checked;
       this.refreshResult();
     });
   }
@@ -115,7 +115,7 @@ export default class ToysPage extends Section {
     this.showToys(
       this.valueFilter.filter(
         this.rangeFilterYear.filter(
-          this.rangeFilterCount.filter(this.toysPageData.toys),
+          this.rangeFilterCount.filter(this.appData.toys),
         ),
       ),
     );
@@ -123,7 +123,7 @@ export default class ToysPage extends Section {
 
   private listenReset() {
     this.section.querySelector('.reset')?.addEventListener('click', () => {
-      this.toysPageData.reset(() => {
+      this.appData.reset(() => {
         this.sortFilter.reset();
         this.rangeFilterCount.reset();
         this.rangeFilterYear.reset();
@@ -135,7 +135,7 @@ export default class ToysPage extends Section {
 
   private listenToysReset() {
     this.section.querySelector('.reset-favorite')?.addEventListener('click', () => {
-      this.toysPageData.toys.forEach((toy) => {
+      this.appData.toys.forEach((toy) => {
         // eslint-disable-next-line no-param-reassign
         toy.selected = false;
       });
@@ -151,7 +151,7 @@ export default class ToysPage extends Section {
     toyCard.addEventListener('click', () => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const toyNum = +toyCard.getAttribute('data-num')! - 1;
-      this.toysPageData.toys[toyNum].selected = !this.toysPageData.toys[toyNum].selected;
+      this.appData.toys[toyNum].selected = !this.appData.toys[toyNum].selected;
     });
   }
 

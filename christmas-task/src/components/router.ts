@@ -1,19 +1,27 @@
-import { ContentInt } from './content';
+import { ContentReturnType, ContentInt } from './content';
 
-export default class Router {
+export interface RouterInt {
+  currentLocation: string;
+  target: HTMLElement | null;
+  content: ContentReturnType;
+  currentContent: HTMLElement;
+  init(): void;
+}
+
+export default class Router implements RouterInt {
   currentLocation: string;
 
   target: HTMLElement | null;
 
-  content: ContentInt;
+  content: ContentReturnType;
 
   currentContent: HTMLElement;
 
   constructor(content: ContentInt) {
     this.currentLocation = document.location.hash.slice(1);
     this.target = document.querySelector('main');
-    this.content = content;
-    this.currentContent = content[this.currentLocation];
+    this.content = content.getContent();
+    this.currentContent = this.content[this.currentLocation];
   }
 
   init() {
@@ -25,13 +33,13 @@ export default class Router {
     };
   }
 
-  changeLocationListener() {
+  private changeLocationListener() {
     window.addEventListener('hashchange', () => {
       this.updatePage();
     });
   }
 
-  updatePage() {
+  private updatePage() {
     if (this.isLocationChanged()) {
       this.updateCurrentLocation();
       this.removeOldContent();
@@ -40,23 +48,23 @@ export default class Router {
     }
   }
 
-  updateCurrentLocation() {
+  private updateCurrentLocation() {
     this.currentLocation = document.location.hash.slice(1);
   }
 
-  updateCurrentContent() {
+  private updateCurrentContent() {
     this.currentContent = this.content[this.currentLocation];
   }
 
-  removeOldContent() {
+  private removeOldContent() {
     this.target?.removeChild(this.currentContent);
   }
 
-  addNewContent() {
+  private addNewContent() {
     this.target?.append(this.currentContent);
   }
 
-  isLocationChanged() {
+  private isLocationChanged() {
     return this.currentLocation !== document.location.hash.slice(1);
   }
 }

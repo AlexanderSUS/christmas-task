@@ -6,7 +6,7 @@ export interface ValueFilterButtonInt {
   create(buttonClass: string,
     property: string,
     propertyIndex: number,
-    toysPageData: AppDataInt,
+    appData: AppDataInt,
     isImageButton: boolean,
     color: string,
   ): HTMLButtonElement;
@@ -15,13 +15,13 @@ export interface ValueFilterButtonInt {
 export default class ValueFilterButton implements ValueFilterButtonInt {
   private addButtonImage(
     button: HTMLButtonElement,
-    toysPageData: AppDataInt,
+    appData: AppDataInt,
     property: string,
     propertyIndex: number,
   ) {
     const buttonImage = document.createElement('img');
     buttonImage.classList.add('filter-button__image');
-    buttonImage.src = toysPageData.valueFilterProps[property][propertyIndex].value;
+    buttonImage.src = appData.valueFilterProps[property][propertyIndex].value;
     button.appendChild(buttonImage);
   }
 
@@ -34,7 +34,7 @@ export default class ValueFilterButton implements ValueFilterButtonInt {
     buttonClass: string,
     property: string,
     propertyIndex: number,
-    toysPageData: AppDataInt,
+    appData: AppDataInt,
     isImageButton: boolean,
     color: string,
   ) {
@@ -43,11 +43,11 @@ export default class ValueFilterButton implements ValueFilterButtonInt {
 
     button.addEventListener('click', () => {
       button.classList.toggle('active');
-      toysPageData.values[property][propertyIndex] = !toysPageData.values[property][propertyIndex];
+      appData.values[property][propertyIndex] = !appData.values[property][propertyIndex];
     });
 
     if (isImageButton) {
-      this.addButtonImage(button, toysPageData, property, propertyIndex);
+      this.addButtonImage(button, appData, property, propertyIndex);
     } else {
       this.addButtonColor(button, color);
     }

@@ -2,7 +2,7 @@ import { AppDataInt } from '../appData/appdata';
 
 export interface SortFilterInt {
   parent: HTMLElement;
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
   selectElement: HTMLSelectElement
   sort():void;
   reset(): void;
@@ -11,18 +11,18 @@ export interface SortFilterInt {
 export class SortFilter {
   parent: HTMLElement;
 
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
 
   selectElement: HTMLSelectElement;
 
-  constructor(parent: HTMLElement, toysPageData: AppDataInt) {
+  constructor(parent: HTMLElement, appData: AppDataInt) {
     this.parent = parent;
-    this.toysPageData = toysPageData;
+    this.appData = appData;
     this.selectElement = <HTMLSelectElement> this.parent.querySelector('.filter__select');
   }
 
   private sortByAlphabet() {
-    this.toysPageData.toys.sort((a, b) => {
+    this.appData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 > name2) { return 1; }
@@ -32,7 +32,7 @@ export class SortFilter {
   }
 
   private sortByAlphabetReverse() {
-    this.toysPageData.toys.sort((a, b) => {
+    this.appData.toys.sort((a, b) => {
       const name1 = a.name.toLowerCase();
       const name2 = b.name.toLowerCase();
       if (name1 < name2) { return 1; }
@@ -42,27 +42,27 @@ export class SortFilter {
   }
 
   private sortByNumber() {
-    this.toysPageData.toys.sort((a, b) => +a.num - +b.num);
+    this.appData.toys.sort((a, b) => +a.num - +b.num);
   }
 
   private sortByQuantity() {
-    this.toysPageData.toys.sort((a, b) => +a.count - +b.count);
+    this.appData.toys.sort((a, b) => +a.count - +b.count);
   }
 
   private sortByQuantityReverse() {
-    this.toysPageData.toys.sort((a, b) => +b.count - +a.count);
+    this.appData.toys.sort((a, b) => +b.count - +a.count);
   }
 
   private sortByYear() {
-    this.toysPageData.toys.sort((a, b) => +a.year - +b.year);
+    this.appData.toys.sort((a, b) => +a.year - +b.year);
   }
 
   private sortByYearReverse() {
-    this.toysPageData.toys.sort((a, b) => +b.year - +a.year);
+    this.appData.toys.sort((a, b) => +b.year - +a.year);
   }
 
   sort() {
-    switch (this.toysPageData.sortState) {
+    switch (this.appData.sortState) {
       case 0: this.sortByNumber(); break;
       case 1: this.sortByAlphabet(); break;
       case 2: this.sortByAlphabetReverse(); break;

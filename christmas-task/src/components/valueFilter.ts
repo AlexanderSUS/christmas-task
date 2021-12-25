@@ -5,7 +5,7 @@ import ValueFilterButton, { ValueFilterButtonInt } from './valueButton';
 
 export interface ValueFilterInt {
   parent: HTMLElement;
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
   valueFilterButton: ValueFilterButtonInt;
   filter(toy: Toy[]): Toy[];
   init(): void;
@@ -15,21 +15,21 @@ export interface ValueFilterInt {
 export class ValueFilter implements ValueFilterInt {
   parent: HTMLElement;
 
-  toysPageData: AppDataInt;
+  appData: AppDataInt;
 
   valueFilterButton: ValueFilterButtonInt;
 
-  constructor(parent: HTMLElement, toysPageData: AppDataInt) {
+  constructor(parent: HTMLElement, appData: AppDataInt) {
     this.parent = parent;
-    this.toysPageData = toysPageData;
+    this.appData = appData;
     this.valueFilterButton = new ValueFilterButton();
   }
 
   init() {
-    Object.keys(this.toysPageData.valueFilterProps).forEach((key) => {
+    Object.keys(this.appData.valueFilterProps).forEach((key) => {
       const container = this.parent.querySelector(`.${key}`);
-      this.toysPageData.valueFilterProps[key].forEach((element, index) => {
-        const button = this.valueFilterButton.create('filter__button_value', key, index, this.toysPageData, element.value[0] !== '#', element.value);
+      this.appData.valueFilterProps[key].forEach((element, index) => {
+        const button = this.valueFilterButton.create('filter__button_value', key, index, this.appData, element.value[0] !== '#', element.value);
         container?.appendChild(button);
       });
     });
@@ -41,7 +41,7 @@ export class ValueFilter implements ValueFilterInt {
 
   private getFavouritesList(toys: Toy[]): Toy[] {
     const favorites: Toy[] = [];
-    if (this.toysPageData.isFavoriteFilterEnabled) {
+    if (this.appData.isFavoriteFilterEnabled) {
       toys.forEach((toy) => {
         if (toy.favorite) {
           favorites.push(toy);
@@ -57,10 +57,10 @@ export class ValueFilter implements ValueFilterInt {
     let filterEnabled = false;
 
     toys.forEach((toy) => {
-      this.toysPageData.values[key].forEach((selected, index) => {
+      this.appData.values[key].forEach((selected, index) => {
         if (selected) {
           filterEnabled = true;
-          if (toy[key.slice(0, -1) as keyof typeof toy] === this.toysPageData.valueFilterProps[key][
+          if (toy[key.slice(0, -1) as keyof typeof toy] === this.appData.valueFilterProps[key][
             index].name) {
             filtered.add(toy);
           }
