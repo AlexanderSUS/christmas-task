@@ -3,6 +3,7 @@
 .game-page,
 .left,
 .right,
+.tree,
 .settings,
 .tree-selection,
 .background-selection,
@@ -55,6 +56,9 @@
 }
 
 .tree {
+  flex-direction: column;
+  justify-content: flex-end;
+
   height: $main-height;
   width: auto;
 
@@ -77,11 +81,14 @@
 
 .game-title {
   width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
 }
 
 .tree-selection,
 .background-selection,
-.toy-selection {
+.toy-selection,
+.ligths-selection {
   flex-direction: row;
   flex-wrap: wrap;
   align-items:flex-start;
@@ -104,22 +111,31 @@
 }
 
 .tree-element {
-  width: 6em;
-  height: 6em;
+  width: 5em;
+  height: 5em;
 }
 
 .toy-element {
   display: flex;
   justify-content: end;
   align-items: flex-end;
-  width: 5em;
-  height: 5em;
+  width: 4.5em;
+  height: 4.5em;
 }
 
 .bg-element {
   width: 4.5em;
   height: 4.5em;
   background-size: cover;
+}
+
+.lights-selection {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  width: 100%;
 }
 
 .rested-toys {
@@ -177,4 +193,7 @@
   background-color: #121c1e;
   border: 1px solid #278d9f;;
 }
+
+@import './lights.scss';
+@import './lightsSwicht.scss';
 

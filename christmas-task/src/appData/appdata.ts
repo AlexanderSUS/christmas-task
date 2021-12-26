@@ -5,6 +5,13 @@ import { Background } from './backgrounds';
 
 export type Values = { [key: string]: boolean[] };
 
+type Lights = {
+  maxFlors: number;
+  minLength: number;
+  isOn: boolean;
+  color: number;
+}
+
 export type Ranges = {
   [key: string] : number[];
 }
@@ -22,6 +29,7 @@ export interface AppDataInt {
   trees: Tree[];
   backgrounds: Background[];
   maxFavoriteQty: number;
+  ligths: Lights;
   reset(callback: () => void): void;
   resetFavorites(): void;
   resetValues(): void;
@@ -52,6 +60,8 @@ export class AppData implements AppDataInt {
 
   maxFavoriteQty: number;
 
+  ligths: Lights;
+
   constructor(toys: Toy[], valueFilterProps: ValueFilterProps, trees: Tree[], bg: Background[]) {
     this.toys = toys;
     this.values = {
@@ -78,6 +88,12 @@ export class AppData implements AppDataInt {
     this.yearStep = 10;
     this.trees = trees;
     this.backgrounds = bg;
+    this.ligths = {
+      maxFlors: 6,
+      minLength: 2,
+      isOn: false,
+      color: 0,
+    };
   }
 
   reset(callback: () => void) {
