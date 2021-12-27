@@ -1,4 +1,5 @@
 import { AppDataInt } from '../appData/appdata';
+import { ToyElement } from './toyImage';
 
 export interface ToysAppearanceInt {
   parent: HTMLElement;
@@ -32,32 +33,18 @@ export class ToysAppearance implements ToysAppearanceInt {
   private showSelectedToys(container: HTMLElement | null) {
     this.appData.toys.forEach((toy) => {
       if (toy.selected) {
-        const toyElement = this.createToyElement(+toy.num);
-        container?.appendChild(toyElement);
+        const toyElement = new ToyElement(+toy.num, this.appData);
+        container?.appendChild(toyElement.create());
       }
     });
   }
 
   private showDefaultToys(container: HTMLElement | null) {
     // eslint-disable-next-line no-plusplus
-    for (let i = 1; i <= 20; i++) {
-      const toyElement = this.createToyElement(i);
-      container?.appendChild(toyElement);
+    for (let i = 1; i <= this.appData.maxFavoriteQty; i++) {
+      const toyElement = new ToyElement(i, this.appData);
+      container?.appendChild(toyElement.create());
     }
-  }
-
-  private createToyElement(index: number): HTMLElement {
-    const toyElement = document.createElement('div');
-    toyElement.classList.add('toy-element');
-    toyElement.style.backgroundImage = `url(../assets/toys/${index}.png)`;
-
-    const restedToys = document.createElement('span');
-    restedToys.classList.add('rested-toys');
-    restedToys.textContent = this.appData.toys[index].count;
-
-    toyElement.appendChild(restedToys);
-
-    return toyElement;
   }
 
   private removeToys() {

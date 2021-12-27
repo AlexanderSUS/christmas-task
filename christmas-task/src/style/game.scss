@@ -100,8 +100,7 @@
 
 }
 
-.tree-element,
-.toy-element {
+.tree-element {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -121,10 +120,22 @@
 
 .toy-element {
   display: flex;
+  position: relative;
+  // flex-direction: column;
+  // justify-content: center;
   justify-content: end;
+  // align-items: center;
   align-items: flex-end;
   width: 4.5em;
   height: 4.5em;
+}
+
+.toy-image {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .bg-element {
@@ -200,4 +211,4 @@
 
 @import './lights.scss';
 @import './lightsSwicht.scss';
-
+@import './map.scss';
