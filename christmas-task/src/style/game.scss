@@ -54,7 +54,6 @@
 
 .stage {
   width: 50%;
-  box-shadow: 0 0 8px 8px rgba(39, 141, 159, 0.8);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -211,4 +210,3 @@
 
 @import './lights.scss';
 @import './lightsSwicht.scss';
-@import './map.scss';

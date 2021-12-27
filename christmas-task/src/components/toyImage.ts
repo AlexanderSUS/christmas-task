@@ -58,20 +58,40 @@ export class ToyElement implements ToyElementInt {
   }
 
   private init() {
-    this.dragStartListener();
-    this.dragEndListener();
+    this.dragStartListener(this.image);
+    this.dragEndListener(this.image);
+    this.cloneListener(this.image);
+    this.decrementRest(this.image);
+    this.removeCloneListener(this.image);
   }
 
-  private dragStartListener() {
-    this.image.addEventListener('dragstart', (e) => {
+  /* primary listeners */
+  private dragStartListener(element: HTMLElement) {
+    element.addEventListener('dragstart', (e) => {
       this.moveToy(e);
-      this.decrementRest();
     });
   }
 
-  private dragEndListener() {
-    this.image.addEventListener('dragend', (e) => {
+  private dragEndListener(element: HTMLElement) {
+    element.addEventListener('dragend', (e) => {
       this.moveToy(e);
+    });
+  }
+  /* end primary listeners */
+
+  private cloneListener(element: HTMLElement) {
+    element.addEventListener('dragstart', (e) => {
+      this.cloneImage(e.target as HTMLElement);
+      console.log('clone');
+    });
+  }
+
+  private removeCloneListener(element: HTMLElement) {
+    element.addEventListener('dragend', () => {
+      element.removeEventListener('start', (e) => {
+        this.cloneImage(e.target as HTMLElement);
+        console.log('clone');
+      });
     });
   }
 
@@ -86,15 +106,33 @@ export class ToyElement implements ToyElementInt {
     }
   }
 
-  private decrementRest() {
-    if (+this.appData.toys[this.index].count > 0) {
-      this.appData.toys[this.index].count = `${+this.appData.toys[this.index].count - 1}`;
-      this.restImageContainer.textContent = this.appData.toys[this.index].count;
-    }
+  private decrementRest(element: HTMLElement) {
+    element.addEventListener('dragstart', () => {
+      if (+this.appData.toys[this.index].count > 0) {
+        this.appData.toys[this.index].count = `${+this.appData.toys[this.index].count - 1}`;
+        this.restImageContainer.textContent = this.appData.toys[this.index].count;
+      }
+    });
   }
 
   private incrementRest() {
     this.appData.toys[this.index].count = `${+this.appData.toys[this.index].count + 1}`;
     this.restImageContainer.textContent = this.appData.toys[this.index].count;
+  }
+
+  private cloneImage(element: HTMLElement) {
+    if (+this.appData.toys[this.index].count > 0) {
+      const clone = element.cloneNode();
+      this.setCloneListeners(clone as HTMLElement);
+      this.image.parentElement?.prepend(clone);
+    }
+  }
+
+  private setCloneListeners(clone: HTMLElement) {
+    this.dragStartListener(clone);
+    this.dragEndListener(clone);
+    this.decrementRest(clone);
+    this.cloneListener(clone);
+    this.removeCloneListener(clone);
   }
 }
