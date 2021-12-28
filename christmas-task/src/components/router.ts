@@ -26,11 +26,18 @@ export default class Router implements RouterInt {
 
   init() {
     window.onload = () => {
-      // eslint-disable-next-line prefer-destructuring
-      document.location.hash = Object.keys(this.content)[0];
+      this.checkLocation();
       this.addNewContent();
       this.changeLocationListener();
+      this.toggleHeaderNavColor();
     };
+  }
+
+  private checkLocation() {
+    if (document.location.hash !== '#start') {
+      // eslint-disable-next-line prefer-destructuring
+      document.location.hash = Object.keys(this.content)[0];
+    }
   }
 
   private changeLocationListener() {
@@ -42,6 +49,7 @@ export default class Router implements RouterInt {
   private updatePage() {
     if (this.isLocationChanged()) {
       this.updateCurrentLocation();
+      this.toggleHeaderNavColor();
       this.removeOldContent();
       this.updateCurrentContent();
       this.addNewContent();
@@ -66,5 +74,12 @@ export default class Router implements RouterInt {
 
   private isLocationChanged() {
     return this.currentLocation !== document.location.hash.slice(1);
+  }
+
+  private toggleHeaderNavColor() {
+    document.querySelectorAll('.navbar__list-item').forEach((element) => {
+      element.classList.remove('active');
+    });
+    document.querySelector(`a[href="#${this.currentLocation}"]`)?.parentElement?.classList.add('active');
   }
 }

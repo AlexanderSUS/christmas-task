@@ -24,7 +24,13 @@
 .navbar__list-item {
   text-decoration: none;
   list-style: none;
-  padding-right: 2vw;
+  margin-right: 2vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.navbar__list-item.active {
+  box-shadow: 0 0 5px 3px rgba(39, 141, 159, 0.8);
 }
 
 .navbar__link {

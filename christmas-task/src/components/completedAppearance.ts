@@ -21,7 +21,7 @@ export class CompmletedAppearance implements CompletedAppearanceInt {
     this.appData.trees.forEach((tree, index) => {
       const treeElement = document.createElement('div');
       treeElement.classList.add('tree-element');
-      treeElement.style.backgroundImage = `url(../assets/tree/${index + 1}.png)`;
+      treeElement.style.backgroundImage = `url(assets/tree/${index + 1}.png)`;
       treeContainer?.appendChild(treeElement);
     });
   }

@@ -38,7 +38,7 @@ export class ToyElement implements ToyElementInt {
 
     this.image = document.createElement('img');
     this.image.classList.add('toy-image');
-    this.image.src = `../assets/toys/${this.index + 1}.png`;
+    this.image.src = `./assets/toys/${this.index + 1}.png`;
     this.image.setAttribute('draggable', 'true');
     this.imageContainer.appendChild(this.image);
     this.imageContainer.appendChild(this.restImageContainer);
@@ -82,7 +82,7 @@ export class ToyElement implements ToyElementInt {
   private cloneListener(element: HTMLElement) {
     element.addEventListener('dragstart', (e) => {
       this.cloneImage(e.target as HTMLElement);
-      console.log('clone');
+      // console.log('clone');
     });
   }
 
@@ -90,7 +90,7 @@ export class ToyElement implements ToyElementInt {
     element.addEventListener('dragend', () => {
       element.removeEventListener('start', (e) => {
         this.cloneImage(e.target as HTMLElement);
-        console.log('clone');
+        // console.log('clone');
       });
     });
   }
