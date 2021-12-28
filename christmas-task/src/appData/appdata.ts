@@ -30,6 +30,7 @@ export interface AppDataInt {
   backgrounds: Background[];
   maxFavoriteQty: number;
   ligths: Lights;
+  soundState: boolean;
   reset(callback: () => void): void;
   resetFavorites(): void;
   resetValues(): void;
@@ -61,6 +62,8 @@ export class AppData implements AppDataInt {
   maxFavoriteQty: number;
 
   ligths: Lights;
+
+  soundState: boolean;
 
   constructor(toys: Toy[], valueFilterProps: ValueFilterProps, trees: Tree[], bg: Background[]) {
     this.toys = toys;
@@ -94,6 +97,7 @@ export class AppData implements AppDataInt {
       isOn: false,
       color: 0,
     };
+    this.soundState = false;
   }
 
   reset(callback: () => void) {

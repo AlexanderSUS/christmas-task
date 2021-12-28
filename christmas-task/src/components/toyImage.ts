@@ -82,7 +82,6 @@ export class ToyElement implements ToyElementInt {
   private cloneListener(element: HTMLElement) {
     element.addEventListener('dragstart', (e) => {
       this.cloneImage(e.target as HTMLElement);
-      // console.log('clone');
     });
   }
 
@@ -90,7 +89,6 @@ export class ToyElement implements ToyElementInt {
     element.addEventListener('dragend', () => {
       element.removeEventListener('start', (e) => {
         this.cloneImage(e.target as HTMLElement);
-        // console.log('clone');
       });
     });
   }

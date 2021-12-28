@@ -3,6 +3,7 @@ import { BgAppearance, BgAppearanceInt } from './bgAppearance';
 import { CompletedAppearanceInt, CompmletedAppearance } from './completedAppearance';
 import { LightsAppeatance, LightsAppeatanceInt } from './lightsAppearance';
 import { Section, SectionInt } from './section';
+import { Sound, SoundInt } from './soundButton';
 import { StageAppearance, StageAppearanceInt } from './stageAppearance';
 import { ToysAppearance, ToysAppearanceInt } from './toyInGameAppearance';
 import { TreesAppearance, TreesAppearanceInt } from './treesAppearance';
@@ -26,6 +27,8 @@ export default class GamePage extends Section {
 
   lights: LightsAppeatanceInt;
 
+  soundButton: SoundInt;
+
   constructor(gamePage: string, appData: AppDataInt) {
     super(gamePage);
     this.appData = appData;
@@ -35,6 +38,7 @@ export default class GamePage extends Section {
     this.completedApearance = new CompmletedAppearance(this.section, this.appData);
     this.stageAppearance = new StageAppearance(this.section, this.appData);
     this.lights = new LightsAppeatance(this.section, this.appData);
+    this.soundButton = new Sound(this.section, this.appData);
   }
 
   create() {
@@ -49,5 +53,6 @@ export default class GamePage extends Section {
     this.stageAppearance.init();
     this.toysAppearance.init();
     this.lights.init();
+    this.soundButton.init();
   }
 }
